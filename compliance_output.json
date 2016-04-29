@@ -1,0 +1,77 @@
+{
+	"Session_1": {
+		"T1": {		
+			"status":"0",
+            "SeriesNumber": "",
+            "SeriesInstanceUID": "",
+			"message": ""
+		},            
+		"T2": {	
+			"status":"0",
+            "SeriesNumber": "",
+            "SeriesInstanceUID": "",
+			"message": "T2 images are not compliant with ABCD protocol"		
+		},
+		"DTI_Block": {
+			"DTI_FM": {
+				"status":"0",
+                "SeriesNumber": [],
+                "SeriesInstanceUID": [],
+				"message": ""	
+			},
+			"DTI": {
+				"status":"0",
+                "SeriesNumber": "",
+                "SeriesInstanceUID": "",
+				"message": ""	
+			},
+			"status": "0",
+			"message": "Compliant DTI component was not found. A compliant DTI component should include a Diffusion field map followed by a DTI acquisition"
+		},		
+		"rsfMRI_Block": {
+			"rs_fMRI_FM_1": {
+				"status":"0",
+				"SeriesInstanceUID": "",
+				"message": ""	
+			},
+			"rs_fMRI_1": {
+				"status":"0",
+				"SeriesInstanceUID": "",
+				"message": ""
+			},
+			"rs_fMRI_2": {
+				"status":"0",
+				"SeriesInstanceUID": "",
+				"message": ""
+			},
+			"rs_fMRI_FM_2": {
+				"status":"0",
+				"SeriesInstanceUID": "",
+				"message": ""	
+			},
+			"rs_fMRI_3": {
+				"status":"0",
+				"SeriesInstanceUID": "",
+				"message": ""
+			},
+			"rs_fMRI_4": {
+				"status":"0",
+				"SeriesInstanceUID": "",
+				"message": ""
+			},
+			"status": "0",
+			"message": "Compliant resting state fMRI component was not found. A compliant resting state fMRI component should include the following acquisition sequence: field map, rsfMRI run#1, rsfMRI run#2, field map, rsfMRI run#3. Additionally, rsfMRI run#4 recommended but not mandatory for compliance"
+		},
+	"status": "0",
+	"message": "Session 1 does not meet ABCD protocol compliance",
+    "StudyDate": "",
+    "StudyTime": "",
+    "StudyInstanceUID": "",
+    "Manufacturer": "",
+    "ManufacturerModelName": "",
+    "AdditionalClassifyType": [],
+    "AdditionalSeriesNumber": [],
+    "AdditionalSeriesInstanceUID": [],
+    "error_messages" : []
+	}
+}

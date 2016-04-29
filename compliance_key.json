@@ -1,0 +1,20 @@
+[
+	{
+		"classifyType": "ABCD-T1"
+	},
+	{
+		"classifyType": "ABCD-T2"
+	},
+	{
+		"classifyType": "ABCD-Diffusion-FM"
+	},
+	{
+		"classifyType": "ABCD-DTI"
+	},
+	{
+		"classifyType": "ABCD-fMRI-FM"
+	},
+	{
+		"classifyType": "ABCD-fMRI"
+	}
+]
