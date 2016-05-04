@@ -32,7 +32,7 @@ jsonDatenum = [inputFolderList(:).datenum];
 filelist = {inputFolderList(idx).name}; 
 
 requiredStruct = ([]);
-
+errorlist = [];
 for i=1:length(filelist)
 
     fname = fullfile(input,filelist{i});
@@ -46,11 +46,12 @@ for i=1:length(filelist)
         else
            compliance_output.Session_1.error_messages{1} = sprintf('corrupted json file: %s', fname);
         end
-        
+        errorlist = [errorlist, i];
         continue;
     end
+    requiredStruct(i).fullclassifyType = parsedExam.ClassifyType;
     requiredStruct(i).classifyType = parsedExam.ClassifyType{end};
-    requiredStruct(i).manufacturer = parsedExam.ClassifyType{1};
+    requiredStruct(i).manufacturer = parsedExam.Manufacturer;
     if (strcmp(requiredStruct(i).manufacturer, 'SIEMENS'))
        requiredStruct(i).pePolarity = parsedExam.PhaseEncodingDirectionPositive; 
     end
@@ -66,6 +67,8 @@ for i=1:length(filelist)
     
 end
 
+requiredStruct(errorlist)=[];
+
 seriesNumbers = [requiredStruct(:).SeriesNumber];
 [~,idx] = sort(seriesNumbers);
 requiredStruct = requiredStruct(idx); 
@@ -78,7 +81,7 @@ index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,1}.classifyT
 if (~isempty(index))
     [compliance_output, requiredStruct] = check_T1_compliance(compliance_output, requiredStruct, compliance_key{1,1}, index);
 else
-    compliance_output.Session_1.T1.message = 'ABCD-T1 was not found';
+    compliance_output.Session_1.T1.message = 'ABCD-T1 classify type was not found';
 end
 
 %======== Search for ABCD-T2 Series ================%
@@ -88,7 +91,7 @@ index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,2}.classifyT
 if (~isempty(index))
     [compliance_output, requiredStruct] = check_T2_compliance(compliance_output, requiredStruct, compliance_key{1,2}, index);
 else
-    compliance_output.Session_1.T2.message = 'ABCD-T2 was not found';
+    compliance_output.Session_1.T2.message = 'ABCD-T2 classify type was not found';
 end
 
 %======== Search for ABCD-DTI Block ================%
@@ -122,15 +125,15 @@ end
 
 
 
-%======== Search for ABCD-NBACK Block ================%
+%======== Search for ABCD-fMRI task1 Block ================%
 
 
 
-%======== Search for ABCD-NBACK Block ================%
+%======== Search for ABCD-fMRI task2 Block ================%
 
 
 
-%======== Search for ABCD-NBACK Block ================%
+%======== Search for ABCD-fMRI task3 Block ================%
 
 
 %======== Tag leftover series ====================%

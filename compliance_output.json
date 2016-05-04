@@ -4,13 +4,13 @@
 			"status":"0",
             "SeriesNumber": "",
             "SeriesInstanceUID": "",
-			"message": ""
+			"message": "ABCD-T1 classify type was not found"
 		},            
 		"T2": {	
 			"status":"0",
             "SeriesNumber": "",
             "SeriesInstanceUID": "",
-			"message": "T2 images are not compliant with ABCD protocol"		
+			"message": "ABCD-T2 classify type was not found"	
 		},
 		"DTI_Block": {
 			"DTI_FM": {
@@ -31,31 +31,37 @@
 		"rsfMRI_Block": {
 			"rs_fMRI_FM_1": {
 				"status":"0",
-				"SeriesInstanceUID": "",
+                "SeriesNumber": [],
+				"SeriesInstanceUID": [],
 				"message": ""	
 			},
 			"rs_fMRI_1": {
 				"status":"0",
+                "SeriesNumber": "",
 				"SeriesInstanceUID": "",
 				"message": ""
 			},
 			"rs_fMRI_2": {
 				"status":"0",
+                "SeriesNumber": "",
 				"SeriesInstanceUID": "",
 				"message": ""
 			},
 			"rs_fMRI_FM_2": {
 				"status":"0",
-				"SeriesInstanceUID": "",
+                "SeriesNumber": [],
+				"SeriesInstanceUID": [],
 				"message": ""	
 			},
 			"rs_fMRI_3": {
 				"status":"0",
+                "SeriesNumber": "",
 				"SeriesInstanceUID": "",
 				"message": ""
 			},
 			"rs_fMRI_4": {
 				"status":"0",
+                "SeriesNumber": "",
 				"SeriesInstanceUID": "",
 				"message": ""
 			},
@@ -69,9 +75,10 @@
     "StudyInstanceUID": "",
     "Manufacturer": "",
     "ManufacturerModelName": "",
-    "AdditionalClassifyType": [],
-    "AdditionalSeriesNumber": [],
-    "AdditionalSeriesInstanceUID": [],
+    "AdditionalSeries": [
+  {       "ClassifyType": [], "SeriesInstanceUID": "", "SeriesNumber": ""
+   }         
+],
     "error_messages" : []
 	}
 }
