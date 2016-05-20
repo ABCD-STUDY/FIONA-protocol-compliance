@@ -15,6 +15,6 @@
 		"classifyType": "ABCD-fMRI-FM"
 	},
 	{
-		"classifyType": "ABCD-fMRI"
+		"classifyType": "ABCD-rsfMRI"
 	}
 ]

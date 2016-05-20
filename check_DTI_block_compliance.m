@@ -12,8 +12,8 @@ else
     testingSeries_FM = requiredStruct(index(i));
     testingSeries_DTI = requiredStruct(index(i)+1);
     
-    if strcmp({testingSeries_DTI.classifyType}, compliance_key{1,4}.classifyType)
-        
+    %if strcmp({testingSeries_DTI.classifyType}, compliance_key{1,4}.classifyType)
+     if cTypeFinder(testingSeries_DTI.fullclassifyType, compliance_key{1,4}.classifyType)
         %Additional rules to be added here and checked from using compliance_key. Right now assumes
         %compliance if DTI block includes consecutive FM and DTI
         compliance_output.Session_1.DTI_Block.DTI_FM.SeriesInstanceUID = testingSeries_FM.SeriesInstanceUID;

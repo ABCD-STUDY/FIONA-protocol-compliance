@@ -12,15 +12,19 @@ elseif nargin == 2
 end
 
 if ~exist(input, 'dir')               
-    compliance_output.Session_1.T1.acquired = 'Yes';
     fprintf('Input directory does not exist. Aborting...\n');
     return;
 end
 
+if ~exist(output, 'dir')               
+    mkdir(output);
+    fprintf('Creating output directory...\n');
+end
+
 % ============= Load keys ===========================%
 
-compliance_key=loadjson('compliance_key.json');
-compliance_output=loadjson('compliance_output.json');
+compliance_key=loadjson('./compliance_key.json');
+compliance_output=loadjson('./compliance_output.json');
 
 
 %===================================%
@@ -50,7 +54,6 @@ for i=1:length(filelist)
         continue;
     end
     requiredStruct(i).fullclassifyType = parsedExam.ClassifyType;
-    requiredStruct(i).classifyType = parsedExam.ClassifyType{end};
     requiredStruct(i).manufacturer = parsedExam.Manufacturer;
     if (strcmp(requiredStruct(i).manufacturer, 'SIEMENS'))
        requiredStruct(i).pePolarity = parsedExam.PhaseEncodingDirectionPositive; 
@@ -76,27 +79,52 @@ requiredStruct = requiredStruct(idx);
 
 %======== Search for ABCD-T1 Series ================%
 
-index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,1}.classifyType)==1);
+index = [];
+for i=1:length(requiredStruct)
+    fullclassifyType = requiredStruct(i).fullclassifyType;
+    if(cTypeFinder(fullclassifyType, compliance_key{1,1}.classifyType))
+        index = [index i];
+    end
+end
+
+%index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,1}.classifyType)==1);
 
 if (~isempty(index))
-    [compliance_output, requiredStruct] = check_T1_compliance(compliance_output, requiredStruct, compliance_key{1,1}, index);
+    [compliance_output, requiredStruct] = check_T1_compliance(compliance_output, requiredStruct, compliance_key, index);
 else
     compliance_output.Session_1.T1.message = 'ABCD-T1 classify type was not found';
 end
 
 %======== Search for ABCD-T2 Series ================%
 
-index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,2}.classifyType)==1);
+%index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,2}.classifyType)==1);
+
+index = [];
+for i=1:length(requiredStruct)
+    fullclassifyType = requiredStruct(i).fullclassifyType;
+    if(cTypeFinder(fullclassifyType, compliance_key{1,2}.classifyType))
+        index = [index i];
+    end
+end
 
 if (~isempty(index))
-    [compliance_output, requiredStruct] = check_T2_compliance(compliance_output, requiredStruct, compliance_key{1,2}, index);
+    [compliance_output, requiredStruct] = check_T2_compliance(compliance_output, requiredStruct, compliance_key, index);
 else
     compliance_output.Session_1.T2.message = 'ABCD-T2 classify type was not found';
 end
 
 %======== Search for ABCD-DTI Block ================%
 
-index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,3}.classifyType)==1);
+%index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,3}.classifyType)==1);
+
+index = [];
+for i=1:length(requiredStruct)
+    fullclassifyType = requiredStruct(i).fullclassifyType;
+    if(cTypeFinder(fullclassifyType, compliance_key{1,3}.classifyType))
+        index = [index i];
+    end
+end
+
 
 if (~isempty(index))
     if strcmp(requiredStruct(index(1)).manufacturer,'SIEMENS')
@@ -111,7 +139,15 @@ end
 %======== Search for ABCD-rsFMRI Block ================%
 
 
-index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,5}.classifyType)==1);
+%index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,5}.classifyType)==1);
+index = [];
+for i=1:length(requiredStruct)
+    fullclassifyType = requiredStruct(i).fullclassifyType;
+    if(cTypeFinder(fullclassifyType, compliance_key{1,5}.classifyType))
+        index = [index i];
+    end
+end
+
 
 if (~isempty(index))
         if strcmp(requiredStruct(index(1)).manufacturer,'SIEMENS')

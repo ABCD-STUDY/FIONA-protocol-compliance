@@ -22,13 +22,19 @@ else
         testingSeries_rsfMRI_4 = requiredStruct(index(i)+7);
     end
     
-    if strcmp({testingSeries_FM_rev_1.classifyType}, compliance_key{1,5}.classifyType) &&...,
-        strcmp({testingSeries_rsfMRI_1.classifyType}, compliance_key{1,6}.classifyType) &&...,
-        strcmp({testingSeries_rsfMRI_2.classifyType}, compliance_key{1,6}.classifyType) &&...,
-        strcmp({testingSeries_FM_fwd_2.classifyType}, compliance_key{1,5}.classifyType) &&...,
-        strcmp({testingSeries_FM_rev_2.classifyType}, compliance_key{1,5}.classifyType) &&...,
-        strcmp({testingSeries_rsfMRI_3.classifyType}, compliance_key{1,6}.classifyType)
-            
+    %if strcmp({testingSeries_FM_rev_1.classifyType}, compliance_key{1,5}.classifyType) &&...,
+     %   strcmp({testingSeries_rsfMRI_1.classifyType}, compliance_key{1,6}.classifyType) &&...,
+     %   strcmp({testingSeries_rsfMRI_2.classifyType}, compliance_key{1,6}.classifyType) &&...,
+     %   strcmp({testingSeries_FM_fwd_2.classifyType}, compliance_key{1,5}.classifyType) &&...,
+     %   strcmp({testingSeries_FM_rev_2.classifyType}, compliance_key{1,5}.classifyType) &&...,
+     %   strcmp({testingSeries_rsfMRI_3.classifyType}, compliance_key{1,6}.classifyType)
+   
+    if cTypeFinder(testingSeries_FM_rev_1.fullclassifyType, compliance_key{1,5}.classifyType) &&...,
+        cTypeFinder(testingSeries_rsfMRI_1.fullclassifyType, compliance_key{1,6}.classifyType) &&...,
+        cTypeFinder(testingSeries_rsfMRI_2.fullclassifyType, compliance_key{1,6}.classifyType) &&...,
+        cTypeFinder(testingSeries_FM_fwd_2.fullclassifyType, compliance_key{1,5}.classifyType) &&...,
+        cTypeFinder(testingSeries_FM_rev_2.fullclassifyType, compliance_key{1,5}.classifyType) &&...,
+        cTypeFinder(testingSeries_rsfMRI_3.fullclassifyType, compliance_key{1,6}.classifyType)
 
         %Additional rules to be added here and checked from using compliance_key. Right now assumes
         %compliance if rsfMRI block includes defined sequence
@@ -48,7 +54,7 @@ else
         compliance_output.Session_1.rsfMRI_Block.rs_fMRI_3.status = '1';
         compliance_output.Session_1.rsfMRI_Block.rs_fMRI_3.message = 'Resting state fMRI acquisition is compliant with ABCD protocol';
         
-        if exist('testingSeries_rsfMRI_4','var') && strcmp({testingSeries_rsfMRI_4.classifyType}, compliance_key{1,6}.classifyType)     
+        if exist('testingSeries_rsfMRI_4','var') && cTypeFinder(testingSeries_rsfMRI_4.fullclassifyType, compliance_key{1,6}.classifyType) 
             compliance_output.Session_1.rsfMRI_Block.rs_fMRI_4.SeriesInstanceUID = testingSeries_rsfMRI_4.SeriesInstanceUID;
             compliance_output.Session_1.rsfMRI_Block.rs_fMRI_4.SeriesNumber = testingSeries_rsfMRI_4.SeriesNumber;
             compliance_output.Session_1.rsfMRI_Block.rs_fMRI_4.status = '1';

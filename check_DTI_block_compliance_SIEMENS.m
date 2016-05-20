@@ -13,9 +13,12 @@ else
     testingSeries_FM_rev = requiredStruct(index(i)+1);
     testingSeries_DTI = requiredStruct(index(i)+2);
     
-    if strcmp({testingSeries_DTI.classifyType}, compliance_key{1,4}.classifyType) &&...,
-        strcmp({testingSeries_FM_rev.classifyType}, compliance_key{1,3}.classifyType)
+    %if strcmp({testingSeries_DTI.classifyType}, compliance_key{1,4}.classifyType) &&...,
+     %   strcmp({testingSeries_FM_rev.classifyType}, compliance_key{1,3}.classifyType)
     
+    if cTypeFinder(testingSeries_DTI.fullclassifyType, compliance_key{1,4}.classifyType) &&...,
+            cTypeFinder(testingSeries_FM_rev.fullclassifyType, compliance_key{1,3}.classifyType)
+               
         %Additional rules to be added here and checked from using
         %compliance_key. DTI only
         compliance_output.Session_1.DTI_Block.DTI.SeriesInstanceUID = testingSeries_DTI.SeriesInstanceUID;
