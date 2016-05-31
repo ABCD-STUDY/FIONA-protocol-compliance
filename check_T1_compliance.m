@@ -16,10 +16,10 @@ for i=1:length(index)
     %Assuming compliance
     if (compliance)
         requiredStruct(index(i))=[];
-        compliance_output.Session_1.T1.SeriesInstanceUID = testingSeries.SeriesInstanceUID;
-        compliance_output.Session_1.T1.SeriesNumber = testingSeries.SeriesNumber;
-        compliance_output.Session_1.T1.status = '1';
-        compliance_output.Session_1.T1.message = 'Compliant ABCD-T1 series was found';       
+        compliance_output.T1.SeriesInstanceUID = testingSeries.SeriesInstanceUID;
+        compliance_output.T1.SeriesNumber = testingSeries.SeriesNumber;
+        compliance_output.T1.status = '1';
+        compliance_output.T1.message = 'Compliant ABCD-T1 series was found';       
         break;  
     end
     

@@ -16,5 +16,14 @@
 	},
 	{
 		"classifyType": "ABCD-rsfMRI"
+	},
+	{
+		"classifyType": "ABCD-MID-fMRI"
+	},
+	{
+		"classifyType": "ABCD-SST-fMRI"
+	},
+	{
+		"classifyType": "ABCD-nBack-fMRI"
 	}
 ]

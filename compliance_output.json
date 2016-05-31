@@ -1,5 +1,4 @@
 {
-	"Session_1": {
 		"T1": {		
 			"status":"0",
             "SeriesNumber": "",
@@ -27,59 +26,132 @@
 			},
 			"status": "0",
 			"message": "Compliant DTI component was not found. A compliant DTI component should include a Diffusion field map followed by a DTI acquisition"
+		},
+        "MID_fMRI_Block": {
+			"MID_fMRI_FM": {
+				"status":"0",
+                "SeriesNumber": [],
+                "SeriesInstanceUID": [],
+				"message": ""	
+			},
+			"MID_fMRI_run1": {
+				"status":"0",
+                "SeriesNumber": "",
+                "SeriesInstanceUID": "",
+				"message": ""	
+			},
+            "MID_fMRI_run2": {
+				"status":"0",
+                "SeriesNumber": "",
+                "SeriesInstanceUID": "",
+				"message": ""	
+			},
+			"status": "0",
+			"message": "Compliant MID fMRI task acquisition was not found. A compliant MID fMRI task component should include a fMRI field map followed by the MID fMRI task acquisition (two runs)"
+		},
+
+        "SST_fMRI_Block": {
+			"SST_fMRI_FM": {
+				"status":"0",
+                "SeriesNumber": [],
+                "SeriesInstanceUID": [],
+				"message": ""	
+			},
+			"SST_fMRI_run1": {
+				"status":"0",
+                "SeriesNumber": "",
+                "SeriesInstanceUID": "",
+				"message": ""	
+			},
+            "SST_fMRI_run2": {
+				"status":"0",
+                "SeriesNumber": "",
+                "SeriesInstanceUID": "",
+				"message": ""	
+			},
+			"status": "0",
+			"message": "Compliant SST fMRI task acquisition was not found. A compliant SST fMRI task component should include a fMRI field map followed by the SST fMRI task acquisition (two runs) "
+		},	
+
+        "nBack_fMRI_Block": {
+			"nBack_fMRI_FM": {
+				"status":"0",
+                "SeriesNumber": [],
+                "SeriesInstanceUID": [],
+				"message": ""	
+			},
+			"nBack_fMRI_run1": {
+				"status":"0",
+                "SeriesNumber": "",
+                "SeriesInstanceUID": "",
+				"message": ""	
+			},
+            "nBack_fMRI_run2": {
+				"status":"0",
+                "SeriesNumber": "",
+                "SeriesInstanceUID": "",
+				"message": ""	
+			},
+			"status": "0",
+			"message": "Compliant nBack fMRI task acquisition was not found. A compliant nBack fMRI task component should include a fMRI field map followed by the nBack fMRI task acquisition (two runs)"
 		},		
-		"rsfMRI_Block": {
-			"rs_fMRI_FM_1": {
+		"rsfMRI_Block_1": {
+			"rs_fMRI_FM": {
 				"status":"0",
                 "SeriesNumber": [],
 				"SeriesInstanceUID": [],
 				"message": ""	
 			},
-			"rs_fMRI_1": {
+			"rs_fMRI_run1": {
 				"status":"0",
                 "SeriesNumber": "",
 				"SeriesInstanceUID": "",
 				"message": ""
 			},
-			"rs_fMRI_2": {
-				"status":"0",
-                "SeriesNumber": "",
-				"SeriesInstanceUID": "",
-				"message": ""
-			},
-			"rs_fMRI_FM_2": {
-				"status":"0",
-                "SeriesNumber": [],
-				"SeriesInstanceUID": [],
-				"message": ""	
-			},
-			"rs_fMRI_3": {
-				"status":"0",
-                "SeriesNumber": "",
-				"SeriesInstanceUID": "",
-				"message": ""
-			},
-			"rs_fMRI_4": {
+			"rs_fMRI_run2": {
 				"status":"0",
                 "SeriesNumber": "",
 				"SeriesInstanceUID": "",
 				"message": ""
 			},
 			"status": "0",
-			"message": "Compliant resting state fMRI component was not found. A compliant resting state fMRI component should include the following acquisition sequence: field map, rsfMRI run#1, rsfMRI run#2, field map, rsfMRI run#3. Additionally, rsfMRI run#4 recommended but not mandatory for compliance"
+			"message": "Compliant 1st resting state fMRI component was not found. The first resting state fMRI component should include a rs fMRI field map followed by two rs fMRI runs"
+        },
+        "rsfMRI_Block_2": {
+			"rs_fMRI_FM": {
+				"status":"0",
+                "SeriesNumber": [],
+				"SeriesInstanceUID": [],
+				"message": ""	
+			},
+			"rs_fMRI_run1": {
+				"status":"0",
+                "SeriesNumber": "",
+				"SeriesInstanceUID": "",
+				"message": ""
+			},
+			"rs_fMRI_run2": {
+				"status":"0",
+                "SeriesNumber": "",
+				"SeriesInstanceUID": "",
+				"message": ""
+			},
+			"status": "0",
+			"message": "Compliant 2nd resting state fMRI component was not found. The second resting state fMRI component should include a rs fMRI field map followed by one or two rs fMRI runs"
 		},
-	"status": "0",
-	"message": "Session 1 does not meet ABCD protocol compliance",
-    "StudyDate": "",
-    "StudyTime": "",
-    "StudyInstanceUID": "",
-    "Manufacturer": "",
-    "ManufacturerModelName": "",
-    "AdditionalSeries": [
-  {       "ClassifyType": [], "SeriesInstanceUID": "", "SeriesNumber": ""
-   }         
-],
-    "error_messages" : []
-	},
-"version":"0.0.2"
+        "status": "0",
+        "message": "Full protocol is not completed",
+        "subsession_status": "0",
+        "subsession_message": "No compliant subsession (two session type protocol) was found",
+        "StudyDate": "",
+        "StudyTime": "",
+        "StudyInstanceUID": "",
+        "Manufacturer": "",
+        "ManufacturerModelName": "",
+        "AdditionalSeries": [
+      {       "ClassifyType": [], "SeriesInstanceUID": "", "SeriesNumber": ""
+       }         
+    ],
+        "error_messages" : [],
+        "version": "0.0.3"
 }
