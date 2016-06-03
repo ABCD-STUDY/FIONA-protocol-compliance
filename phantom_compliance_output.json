@@ -1,0 +1,39 @@
+{
+		"ABCD_Coil_QA": {		
+			"status":"0",
+            "SeriesNumber": "",
+            "SeriesInstanceUID": "",
+			"message": "ABCD-Coil-QA classify type was not found"
+		},            
+        "ABCD_fBIRN_QA": {		
+			"status":"0",
+            "SeriesNumber": "",
+            "SeriesInstanceUID": "",
+			"message": "ABCD-fBIRN-QA classify type was not found"
+		},  
+        "ABCD_MB_fMRI_QA": {		
+			"status":"0",
+            "SeriesNumber": "",
+            "SeriesInstanceUID": "",
+			"message": "ABCD-MB-fMRI-QA classify type was not found"
+		},  
+        "ABCD_Diffusion_QA": {		
+			"status":"0",
+            "SeriesNumber": "",
+            "SeriesInstanceUID": "",
+			"message": "ABCD-Diffusion-QA classify type was not found"
+		},  
+        "status": "0",
+        "message": "Phantom QA protocol is not completed",
+        "StudyDate": "",
+        "StudyTime": "",
+        "StudyInstanceUID": "",
+        "Manufacturer": "",
+        "ManufacturerModelName": "",
+        "AdditionalSeries": [
+      {       "ClassifyType": [], "SeriesInstanceUID": "", "SeriesNumber": ""
+       }         
+    ],
+        "error_messages" : [],
+        "version": "0.0.4"
+}

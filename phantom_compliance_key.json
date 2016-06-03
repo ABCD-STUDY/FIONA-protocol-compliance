@@ -1,0 +1,14 @@
+[
+	{
+		"classifyType": "ABCD-Coil-QA"
+	},
+	{
+		"classifyType": "ABCD-fBIRN-QA"
+	},
+	{
+		"classifyType": "ABCD-MB-fMRI-QA"
+	},
+	{
+		"classifyType": "ABCD-Diffusion-QA"
+	}
+]
