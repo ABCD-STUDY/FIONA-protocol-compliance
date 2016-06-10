@@ -11,6 +11,8 @@ compliance_output.StudyInstanceUID = c_output.StudyInstanceUID;
 compliance_output.Manufacturer = c_output.Manufacturer;
 compliance_output.ManufacturerModelName = c_output.Manufacturer;
 compliance_output.error_messages = c_output.error_messages;
+compliance_output.PatientID = c_output.PatientID;
+compliance_output.PatientName = c_output.PatientName;
 
 
 %======== Search for Coil-QA Series ================%

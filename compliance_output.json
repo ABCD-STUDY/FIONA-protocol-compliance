@@ -140,9 +140,10 @@
 			"message": "Compliant 2nd resting state fMRI component was not found. The second resting state fMRI component should include a rs fMRI field map followed by one or two rs fMRI runs"
 		},
         "status": "0",
-        "message": "Full protocol is not completed",
-        "subsession_status": "0",
-        "subsession_message": "No compliant subsession (two session type protocol) was found",
+        "message": "A completed compliant session was not found",
+        "shortmessage": "",
+        "PatientID": "",
+        "PatientName": "",
         "StudyDate": "",
         "StudyTime": "",
         "StudyInstanceUID": "",
@@ -153,5 +154,5 @@
        }         
     ],
         "error_messages" : [],
-        "version": "0.0.4"
+        "version": "0.0.5"
 }

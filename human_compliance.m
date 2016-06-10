@@ -163,49 +163,44 @@ if (str2double(compliance_output.rsfMRI_Block_1.status)...,
 
     compliance_output.status = '1'; 
     compliance_output.message = 'A completed compliant protocol was obtained';
-    compliance_output.subsession_status = '1'; 
-    compliance_output.subsession_message = 'A completed compliant protocol was obtained'; 
-
+    compliance_output.shortmessage = 'C';
+    
 elseif (str2double(compliance_output.rsfMRI_Block_1.status)...,
         && str2double(compliance_output.rsfMRI_Block_2.status)...,
         && str2double(compliance_output.DTI_Block.status)...,
         && str2double(compliance_output.T1.status)...,
         && str2double(compliance_output.T2.status))
     
-    compliance_output.status = '0'; 
-    compliance_output.message = 'Full protocol is not completed';
-    compliance_output.subsession_status = '1'; 
-    compliance_output.subsession_message = 'A completed compliant session was acquired. Session 1 Type A (Two session based acquisition)'; 
+    compliance_output.status = '1'; 
+    compliance_output.message = 'A completed compliant session was acquired. Session 1 Type A (Two session based acquisition)'; 
+    compliance_output.shortmessage = 'A1';
     
 elseif (str2double(compliance_output.rsfMRI_Block_1.status)...,
         && str2double(compliance_output.rsfMRI_Block_2.status)...,
         && str2double(compliance_output.DTI_Block.status)...,
         && str2double(compliance_output.T2.status))
     
-    compliance_output.status = '0'; 
-    compliance_output.message = 'Full protocol is not completed';
-    compliance_output.subsession_status = '1'; 
-    compliance_output.subsession_message = 'A completed compliant session was acquired. Session 2 Type B (Two session based acquisition)'; 
-
+    compliance_output.status = '1'; 
+    compliance_output.message = 'A completed compliant session was acquired. Session 2 Type B (Two session based acquisition)'; 
+    compliance_output.shortmessage = 'B2';
+    
 elseif  (str2double(compliance_output.nBack_fMRI_Block.status)...,
         && str2double(compliance_output.MID_fMRI_Block.status)...,
         && str2double(compliance_output.SST_fMRI_Block.status)...,
         && str2double(compliance_output.T1.status))
     
-    compliance_output.status = '0'; 
-    compliance_output.message = 'Full protocol is not completed';
-    compliance_output.subsession_status = '1'; 
-    compliance_output.subsession_message = 'A completed compliant session was acquired. Session 1 Type B (Two session based acquisition)';   
+    compliance_output.status = '1'; 
+    compliance_output.message = 'A completed compliant session was acquired. Session 1 Type B (Two session based acquisition)';   
+    compliance_output.shortmessage = 'B1';
     
 elseif  (str2double(compliance_output.nBack_fMRI_Block.status)...,
         && str2double(compliance_output.MID_fMRI_Block.status)...,
         && str2double(compliance_output.SST_fMRI_Block.status))
     
-    compliance_output.status = '0'; 
-    compliance_output.message = 'Full protocol is not completed';
-    compliance_output.subsession_status = '1'; 
-    compliance_output.subsession_message = 'A completed compliant session was acquired. Session 2 Type A (Two session based acquisition)';  
-       
+    compliance_output.status = '1'; 
+    compliance_output.message = 'A completed compliant session was acquired. Session 2 Type A (Two session based acquisition)';  
+    compliance_output.shortmessage = 'A2';
+     
 end
 
 

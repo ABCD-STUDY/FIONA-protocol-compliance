@@ -68,7 +68,8 @@ for i=1:length(filelist)
     compliance_output.StudyInstanceUID = parsedExam.StudyInstanceUID;
     compliance_output.Manufacturer = parsedExam.Manufacturer;
     compliance_output.ManufacturerModelName = parsedExam.Manufacturer;
-    
+    compliance_output.PatientID = parsedExam.PatientID;
+    compliance_output.PatientName = parsedExam.PatientName;
 end
 
 requiredStruct(errorlist)=[];
