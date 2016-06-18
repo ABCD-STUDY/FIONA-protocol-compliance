@@ -1,25 +1,17 @@
-function PC_app_main_fordeployment(input,varargin)
+function PC_app_main_fordeployment(input, varargin)
 %HUMAN_QC_MAIN Summary of this function goes here
 %   Detailed explanation goes here
 tic
 % ============== parse input arguments ============== %
 
-if nargin <2
-    fprintf('Requires input and output directory. Aborting...\n');
+if nargin <3
+    fprintf('Requires input, output and data storage directory. Aborting...\n');
     return;
-elseif nargin == 2
+else
     output = varargin{1};
+    datastore = varargin{2};
 end
 
-if ~exist(input, 'dir')               
-    fprintf('Input directory does not exist. Aborting...\n');
-    return;
-end
-
-if ~exist(output, 'dir')               
-    mkdir(output);
-    fprintf('Creating output directory...\n');
-end
 
 % ============= Load keys ===========================%
 
@@ -86,16 +78,15 @@ requiredStruct = requiredStruct(idx);
 if phantom_result
     phantom_compliance(requiredStruct, phantom_compliance_key, compliance_output, output) 
 else
-    human_compliance(requiredStruct, compliance_key, compliance_output, output);
+    human_compliance(requiredStruct, compliance_key, compliance_output, output, datastore);
 end;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+toc
 
 fprintf('Finished\n');
-
-toc
 
 
 end

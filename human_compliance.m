@@ -1,4 +1,4 @@
-function human_compliance(requiredStruct, compliance_key, compliance_output, outdir)
+function human_compliance(requiredStruct, compliance_key, compliance_output, outdir, datastore)
 
 
 %======== Search for ABCD-T1 Series ================%
@@ -203,6 +203,431 @@ elseif  (str2double(compliance_output.nBack_fMRI_Block.status)...,
      
 end
 
+
+%==========Get file size and paths====================%
+
+stUID = compliance_output.StudyInstanceUID;
+prefixpfile = 'subjid';
+pID = compliance_output.PatientID;
+%sdate = compliance_output.StudyDate;
+%fsdate = strcat(sdate(5:6), '-', sdate((end-1):end), '-', sdate(1:4));
+%stime = compliance_output.StudyTime;
+
+
+if compliance_output.T1.status
+    sUI = compliance_output.T1.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.T1.file{1,1}.path = ffname;
+        compliance_output.T1.file{1,1}.size = fresult.bytes;
+    end
+end
+
+%%%
+
+if compliance_output.T2.status
+    sUI = compliance_output.T2.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.T2.file{1,1}.path = ffname;
+        compliance_output.T2.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+%%%
+
+if compliance_output.DTI_Block.DTI_FM.status
+    sUI = compliance_output.DTI_Block.DTI_FM.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.DTI_Block.DTI_FM.file{1,1}.path = ffname;
+        compliance_output.DTI_Block.DTI_FM.file{1,1}.size = fresult.bytes;
+    end
+
+    sNo = num2str(compliance_output.DTI_Block.DTI_FM.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.DTI_Block.DTI_FM_kspace.file{1,1}.path = ffname;
+        compliance_output.DTI_Block.DTI_FM_kspace.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+if compliance_output.DTI_Block.DTI.status
+    sUI = compliance_output.DTI_Block.DTI_FM.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.DTI_Block.DTI.file{1,1}.path = ffname;
+        compliance_output.DTI_Block.DTI.file{1,1}.size = fresult.bytes;
+    end
+
+    sNo = num2str(compliance_output.DTI_Block.DTI.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.DTI_Block.DTI_kspace.file{1,1}.path = ffname;
+        compliance_output.DTI_Block.DTI_kspace.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+
+%%%
+
+if compliance_output.MID_fMRI_Block.MID_fMRI_FM.status
+    sUI = compliance_output.MID_fMRI_Block.MID_fMRI_FM.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.MID_fMRI_Block.MID_fMRI_FM.file{1,1}.path = ffname;
+        compliance_output.MID_fMRI_Block.MID_fMRI_FM.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+if compliance_output.MID_fMRI_Block.MID_fMRI_run1.status
+    sUI = compliance_output.MID_fMRI_Block.MID_fMRI_run1.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.MID_fMRI_Block.MID_fMRI_run1.file{1,1}.path = ffname;
+        compliance_output.MID_fMRI_Block.MID_fMRI_run1.file{1,1}.size = fresult.bytes;
+    end
+
+    sNo = num2str(compliance_output.MID_fMRI_Block.MID_fMRI_run1.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.MID_fMRI_Block.MID_fMRI_run1_kspace.file{1,1}.path = ffname;
+        compliance_output.MID_fMRI_Block.MID_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
+    end
+
+
+end
+
+if compliance_output.MID_fMRI_Block.MID_fMRI_run2.status
+    sUI = compliance_output.MID_fMRI_Block.MID_fMRI_run2.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.MID_fMRI_Block.MID_fMRI_run2.file{1,1}.path = ffname;
+        compliance_output.MID_fMRI_Block.MID_fMRI_run2.file{1,1}.size = fresult.bytes;
+    end
+    sNo = num2str(compliance_output.MID_fMRI_Block.MID_fMRI_run2.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.MID_fMRI_Block.MID_fMRI_run2_kspace.file{1,1}.path = ffname;
+        compliance_output.MID_fMRI_Block.MID_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
+    end
+end
+
+%%%
+
+if compliance_output.SST_fMRI_Block.SST_fMRI_FM.status
+    sUI = compliance_output.MID_fMRI_Block.MID_fMRI_FM.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.SST_fMRI_Block.SST_fMRI_FM.file{1,1}.path = ffname;
+        compliance_output.SST_fMRI_Block.SST_fMRI_FM.file{1,1}.size = fresult.bytes;
+    end
+
+
+end
+
+if compliance_output.SST_fMRI_Block.SST_fMRI_run1.status
+    sUI = compliance_output.SST_fMRI_Block.SST_fMRI_run1.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.SST_fMRI_Block.SST_fMRI_run1.file{1,1}.path = ffname;
+        compliance_output.SST_fMRI_Block.SST_fMRI_run1.file{1,1}.size = fresult.bytes;
+    end
+
+    sNo = num2str(compliance_output.SST_fMRI_Block.SST_fMRI_run1.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.SST_fMRI_Block.SST_fMRI_run1_kspace.file{1,1}.path = ffname;
+        compliance_output.SST_fMRI_Block.SST_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+if compliance_output.SST_fMRI_Block.SST_fMRI_run2.status
+    sUI = compliance_output.SST_fMRI_Block.SST_fMRI_run2.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.SST_fMRI_Block.SST_fMRI_run2.file{1,1}.path = ffname;
+        compliance_output.SST_fMRI_Block.SST_fMRI_run2.file{1,1}.size = fresult.bytes;
+    end
+
+    sNo = num2str(compliance_output.SST_fMRI_Block.SST_fMRI_run2.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.SST_fMRI_Block.SST_fMRI_run2_kspace.file{1,1}.path = ffname;
+        compliance_output.SST_fMRI_Block.SST_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+%%%
+
+if compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.status
+    sUI = compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.file{1,1}.path = ffname;
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+if compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.status
+    sUI = compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.file{1,1}.path = ffname;
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.file{1,1}.size = fresult.bytes;
+    end
+    
+    sNo = num2str(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run1_kspace.file{1,1}.path = ffname;
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
+    end
+
+
+end
+
+if compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.status
+    sUI = compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)        
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.file{1,1}.path = ffname;
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.file{1,1}.size = fresult.bytes;
+    end
+
+    sNo = num2str(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run2_kspace.file{1,1}.path = ffname;
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+%%%
+
+if compliance_output.rsfMRI_Block_1.rs_fMRI_FM.status
+    sUI = compliance_output.rsfMRI_Block_1.rs_fMRI_FM.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+if compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status
+    sUI = compliance_output.rsfMRI_Block_1.rs_fMRI_run1.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run1.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run1.file{1,1}.size = fresult.bytes;
+    end
+
+    sNo = num2str(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run1_kspace.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
+    end
+
+
+end
+
+if compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status
+    sUI = compliance_output.rsfMRI_Block_1.rs_fMRI_run2.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run2.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run2.file{1,1}.size = fresult.bytes;
+    end
+    
+    sNo = num2str(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run2_kspace.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+%%%
+
+if compliance_output.rsfMRI_Block_2.rs_fMRI_FM.status
+    sUI = compliance_output.rsfMRI_Block_2.rs_fMRI_FM.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_FM.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_2.rs_fMRI_FM.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+if compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status
+    sUI = compliance_output.rsfMRI_Block_2.rs_fMRI_run1.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run1.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run1.file{1,1}.size = fresult.bytes;
+    end
+
+    sNo = num2str(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run1_kspace.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
+    end
+
+
+end
+
+if compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status
+    sUI = compliance_output.rsfMRI_Block_2.rs_fMRI_run2.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run2.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run2.file{1,1}.size = fresult.bytes;
+    end
+
+    sNo = num2str(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run2_kspace.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
+    end
+
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
