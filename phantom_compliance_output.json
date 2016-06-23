@@ -3,25 +3,43 @@
 			"status":"0",
             "SeriesNumber": "",
             "SeriesInstanceUID": "",
-			"message": "ABCD-Coil-QA classify type was not found"
+			"message": "ABCD-Coil-QA classify type was not found",
+            "file": [
+                {"path": "", "size": ""
+            }]
 		},            
         "ABCD_fBIRN_QA": {		
 			"status":"0",
             "SeriesNumber": "",
             "SeriesInstanceUID": "",
-			"message": "ABCD-fBIRN-QA classify type was not found"
+			"message": "ABCD-fBIRN-QA classify type was not found",
+            "file": [
+                {"path": "", "size": ""
+            }]
 		},  
         "ABCD_MB_fMRI_QA": {		
 			"status":"0",
             "SeriesNumber": "",
             "SeriesInstanceUID": "",
-			"message": "ABCD-MB-fMRI-QA classify type was not found"
+			"message": "ABCD-MB-fMRI-QA classify type was not found",
+            "file": [
+                    {"path": "", "size": ""
+            }],
+            "kspace_file": [
+                    {"path": "", "size": ""
+            }]		
 		},  
         "ABCD_Diffusion_QA": {		
 			"status":"0",
             "SeriesNumber": "",
             "SeriesInstanceUID": "",
 			"message": "ABCD-Diffusion-QA classify type was not found"
+            "file": [
+                    {"path": "", "size": ""
+            }],
+            "kspace_file": [
+                    {"path": "", "size": ""
+            }]	
 		},  
         "status": "0",
         "message": "Phantom QA protocol is not completed",

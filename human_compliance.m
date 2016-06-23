@@ -214,7 +214,7 @@ pID = compliance_output.PatientID;
 %stime = compliance_output.StudyTime;
 
 
-if compliance_output.T1.status
+if str2num(compliance_output.T1.status)
     sUI = compliance_output.T1.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -229,7 +229,7 @@ end
 
 %%%
 
-if compliance_output.T2.status
+if str2num(compliance_output.T2.status)
     sUI = compliance_output.T2.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -245,7 +245,7 @@ end
 
 %%%
 
-if compliance_output.DTI_Block.DTI_FM.status
+if str2num(compliance_output.DTI_Block.DTI_FM.status)
     sUI = compliance_output.DTI_Block.DTI_FM.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -270,7 +270,7 @@ if compliance_output.DTI_Block.DTI_FM.status
 
 end
 
-if compliance_output.DTI_Block.DTI.status
+if str2num(compliance_output.DTI_Block.DTI.status)
     sUI = compliance_output.DTI_Block.DTI_FM.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -298,7 +298,7 @@ end
 
 %%%
 
-if compliance_output.MID_fMRI_Block.MID_fMRI_FM.status
+if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_FM.status)
     sUI = compliance_output.MID_fMRI_Block.MID_fMRI_FM.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -312,7 +312,7 @@ if compliance_output.MID_fMRI_Block.MID_fMRI_FM.status
 
 end
 
-if compliance_output.MID_fMRI_Block.MID_fMRI_run1.status
+if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run1.status)
     sUI = compliance_output.MID_fMRI_Block.MID_fMRI_run1.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -338,7 +338,7 @@ if compliance_output.MID_fMRI_Block.MID_fMRI_run1.status
 
 end
 
-if compliance_output.MID_fMRI_Block.MID_fMRI_run2.status
+if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run2.status)
     sUI = compliance_output.MID_fMRI_Block.MID_fMRI_run2.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -363,7 +363,7 @@ end
 
 %%%
 
-if compliance_output.SST_fMRI_Block.SST_fMRI_FM.status
+if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_FM.status)
     sUI = compliance_output.MID_fMRI_Block.MID_fMRI_FM.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -378,7 +378,7 @@ if compliance_output.SST_fMRI_Block.SST_fMRI_FM.status
 
 end
 
-if compliance_output.SST_fMRI_Block.SST_fMRI_run1.status
+if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run1.status)
     sUI = compliance_output.SST_fMRI_Block.SST_fMRI_run1.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -403,7 +403,7 @@ if compliance_output.SST_fMRI_Block.SST_fMRI_run1.status
 
 end
 
-if compliance_output.SST_fMRI_Block.SST_fMRI_run2.status
+if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run2.status)
     sUI = compliance_output.SST_fMRI_Block.SST_fMRI_run2.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -430,7 +430,7 @@ end
 
 %%%
 
-if compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.status
+if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.status)
     sUI = compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -444,7 +444,7 @@ if compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.status
 
 end
 
-if compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.status
+if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.status)
     sUI = compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -470,7 +470,7 @@ if compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.status
 
 end
 
-if compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.status
+if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.status)
     sUI = compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -497,7 +497,7 @@ end
 
 %%%
 
-if compliance_output.rsfMRI_Block_1.rs_fMRI_FM.status
+if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_FM.status)
     sUI = compliance_output.rsfMRI_Block_1.rs_fMRI_FM.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -511,7 +511,7 @@ if compliance_output.rsfMRI_Block_1.rs_fMRI_FM.status
 
 end
 
-if compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status
+if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status)
     sUI = compliance_output.rsfMRI_Block_1.rs_fMRI_run1.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -537,7 +537,7 @@ if compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status
 
 end
 
-if compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status
+if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status)
     sUI = compliance_output.rsfMRI_Block_1.rs_fMRI_run2.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -564,7 +564,7 @@ end
 
 %%%
 
-if compliance_output.rsfMRI_Block_2.rs_fMRI_FM.status
+if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_FM.status)
     sUI = compliance_output.rsfMRI_Block_2.rs_fMRI_FM.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -578,7 +578,7 @@ if compliance_output.rsfMRI_Block_2.rs_fMRI_FM.status
 
 end
 
-if compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status
+if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status)
     sUI = compliance_output.rsfMRI_Block_2.rs_fMRI_run1.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
@@ -604,7 +604,7 @@ if compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status
 
 end
 
-if compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status
+if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status)
     sUI = compliance_output.rsfMRI_Block_2.rs_fMRI_run2.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);

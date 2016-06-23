@@ -64,7 +64,7 @@ end
 if (~isempty(index))
     [compliance_output, requiredStruct] = check_MBfBIRNQA_compliance(compliance_output, requiredStruct, compliance_key, index);
 else
-    compliance_output.ABCD_MB_fBIRN_QA.message = 'ABCD-MB-fBIRN-QA classify type was not found';
+    compliance_output.ABCD_MB_fMRI_QA.message = 'ABCD-MB-fMRI-QA classify type was not found';
 end
 
 
@@ -98,7 +98,99 @@ if (str2double(compliance_output.ABCD_Coil_QA.status)...,
 
 end
 
+
+%==========Get file size and paths====================%
+
+if str2num(compliance_output.ABCD_Coil_QA.status)
+    sUI = compliance_output.ABCD_Coil_QA.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.ABCD_Coil_QA.file{1,1}.path = ffname;
+        compliance_output.ABCD_Coil_QA.file{1,1}.size = fresult.bytes;
+    end
+end
+
+%%%
+
+if str2num(compliance_output.ABCD_fBIRN_QA.status)
+    sUI = compliance_output.ABCD_fBIRN_QA.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.ABCD_fBIRN_QA.file{1,1}.path = ffname;
+        compliance_output.ABCD_fBIRN_QA.file{1,1}.size = fresult.bytes;
+    end
+end
+
+%%%
+
+if str2num(compliance_output.ABCD_MB_fMRI_QA.status)
+    sUI = compliance_output.ABCD_MB_fMRI_QA.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.ABCD_MB_fMRI_QA.file{1,1}.path = ffname;
+        compliance_output.ABCD_MB_fMRI_QA.file{1,1}.size = fresult.bytes;
+    end
+    
+    sNo = num2str(compliance_output.ABCD_MB_fMRI_QA.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.ABCD_MB_fMRI_QA.kspace_file{1,1}.path = ffname;
+        compliance_output.ABCD_MB_fMRI_QA.kspace_file{1,1}.size = fresult.bytes;
+    end
+    
+    
+end
+
+%%%
+
+
+if str2num(compliance_output.ABCD_Diffusion_QA.status)
+    sUI = compliance_output.ABCD_Diffusion_QA.SeriesInstanceUID;
+    fname = sprintf('%s_%s.tar', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.ABCD_Diffusion_QA.file{1,1}.path = ffname;
+        compliance_output.ABCD_Diffusion_QA.file{1,1}.size = fresult.bytes;
+    end
+    
+    sNo = num2str(compliance_output.BCD_Diffusion_QA.SeriesNumber);
+    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.ABCD_Diffusion_QA.kspace_file{1,1}.path = ffname;
+        compliance_output.ABCD_Diffusion_QA.kspace_file{1,1}.size = fresult.bytes;
+    end
+    
+end
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %if isdeployed    
     % write out proc.json for smart routing
