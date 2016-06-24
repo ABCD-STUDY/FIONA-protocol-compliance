@@ -271,7 +271,7 @@ if str2num(compliance_output.DTI_Block.DTI_FM.status)
 end
 
 if str2num(compliance_output.DTI_Block.DTI.status)
-    sUI = compliance_output.DTI_Block.DTI_FM.SeriesInstanceUID;
+    sUI = compliance_output.DTI_Block.DTI.SeriesInstanceUID;
     fname = sprintf('%s_%s.tar', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
