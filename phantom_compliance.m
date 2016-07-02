@@ -1,4 +1,4 @@
-function phantom_compliance(requiredStruct, compliance_key, c_output, outdir) 
+function phantom_compliance(requiredStruct, compliance_key, c_output, outdir, datastore) 
 
 %============Load phantom compliance output json=======%
 

@@ -37,11 +37,15 @@
                 }]	
 			},
             "DTI_FM_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
 			},
             "DTI_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
@@ -78,11 +82,15 @@
                 }]
 			},
             "MID_fMRI_run1_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
 			},
             "MID_fMRI_run2_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
@@ -120,11 +128,15 @@
                 }]
 			},
             "SST_fMRI_run1_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
 			},
             "SST_fMRI_run2_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
@@ -162,11 +174,15 @@
                 }]
 			},
             "nBack_fMRI_run1_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
 			},
             "nBack_fMRI_run2_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
@@ -203,11 +219,15 @@
                 }]
 			},
             "rs_fMRI_run1_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
 			},
             "rs_fMRI_run2_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
@@ -244,11 +264,15 @@
                 }]
 			},
             "rs_fMRI_run1_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
 			},
             "rs_fMRI_run2_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
                 "file": [
                     {"path": "", "size": ""
                 }]	
@@ -267,9 +291,9 @@
         "Manufacturer": "",
         "ManufacturerModelName": "",
         "AdditionalSeries": [
-      {       "ClassifyType": [], "SeriesInstanceUID": "", "SeriesNumber": ""
+      {       
        }         
     ],
         "error_messages" : [],
-        "version": "0.0.6"
+        "version": "0.0.8"
 }

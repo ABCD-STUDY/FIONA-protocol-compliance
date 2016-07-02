@@ -146,7 +146,7 @@ end
 
 %======== Tag leftover series ====================%
         
-compliance_output = additionalSeriesParsing(compliance_output, requiredStruct);
+compliance_output = additionalSeriesParsing(compliance_output, requiredStruct, datastore);
 
 
 
@@ -207,7 +207,8 @@ end
 %==========Get file size and paths====================%
 
 stUID = compliance_output.StudyInstanceUID;
-prefixpfile = 'subjid';
+suidprefixpfile = 'SUID_';
+prefixpfile = '_subjid';
 pID = compliance_output.PatientID;
 %sdate = compliance_output.StudyDate;
 %fsdate = strcat(sdate(5:6), '-', sdate((end-1):end), '-', sdate(1:4));
@@ -258,7 +259,7 @@ if str2num(compliance_output.DTI_Block.DTI_FM.status)
     end
 
     sNo = num2str(compliance_output.DTI_Block.DTI_FM.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -266,6 +267,8 @@ if str2num(compliance_output.DTI_Block.DTI_FM.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.DTI_Block.DTI_FM_kspace.file{1,1}.path = ffname;
         compliance_output.DTI_Block.DTI_FM_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.DTI_Block.DTI_FM_kspace.status = '1';
+        compliance_output.DTI_Block.DTI_FM_kspace.message = 'k-space data was received';
     end
 
 end
@@ -283,7 +286,7 @@ if str2num(compliance_output.DTI_Block.DTI.status)
     end
 
     sNo = num2str(compliance_output.DTI_Block.DTI.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -291,6 +294,8 @@ if str2num(compliance_output.DTI_Block.DTI.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.DTI_Block.DTI_kspace.file{1,1}.path = ffname;
         compliance_output.DTI_Block.DTI_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.DTI_Block.DTI_kspace.status = '1';
+        compliance_output.DTI_Block.DTI_kspace.message = 'k-space data was received';
     end
 
 end
@@ -325,7 +330,7 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.MID_fMRI_Block.MID_fMRI_run1.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -333,6 +338,8 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run1.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.MID_fMRI_Block.MID_fMRI_run1_kspace.file{1,1}.path = ffname;
         compliance_output.MID_fMRI_Block.MID_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.MID_fMRI_Block.MID_fMRI_run1_kspace.status = '1';
+        compliance_output.MID_fMRI_Block.MID_fMRI_run1_kspace.message = 'k-space data was received';
     end
 
 
@@ -350,7 +357,7 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run2.status)
         compliance_output.MID_fMRI_Block.MID_fMRI_run2.file{1,1}.size = fresult.bytes;
     end
     sNo = num2str(compliance_output.MID_fMRI_Block.MID_fMRI_run2.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -358,6 +365,8 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run2.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.MID_fMRI_Block.MID_fMRI_run2_kspace.file{1,1}.path = ffname;
         compliance_output.MID_fMRI_Block.MID_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.MID_fMRI_Block.MID_fMRI_run2_kspace.status = '1';
+        compliance_output.MID_fMRI_Block.MID_fMRI_run2_kspace.message = 'k-space data was received';
     end
 end
 
@@ -391,7 +400,7 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.SST_fMRI_Block.SST_fMRI_run1.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -399,6 +408,8 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run1.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.SST_fMRI_Block.SST_fMRI_run1_kspace.file{1,1}.path = ffname;
         compliance_output.SST_fMRI_Block.SST_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.SST_fMRI_Block.SST_fMRI_run1_kspace.status = '1';
+        compliance_output.SST_fMRI_Block.SST_fMRI_run1_kspace.message = 'k-space data was received';
     end
 
 end
@@ -416,7 +427,7 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run2.status)
     end
 
     sNo = num2str(compliance_output.SST_fMRI_Block.SST_fMRI_run2.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -424,6 +435,8 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run2.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.SST_fMRI_Block.SST_fMRI_run2_kspace.file{1,1}.path = ffname;
         compliance_output.SST_fMRI_Block.SST_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.SST_fMRI_Block.SST_fMRI_run2_kspace.status = '1';
+        compliance_output.SST_fMRI_Block.SST_fMRI_run2_kspace.message = 'k-space data was received';
     end
 
 end
@@ -457,7 +470,7 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.status)
     end
     
     sNo = num2str(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -465,6 +478,8 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run1_kspace.file{1,1}.path = ffname;
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run1_kspace.status = '1';
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run1_kspace.message = 'k-space data was received';
     end
 
 
@@ -483,7 +498,7 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.status)
     end
 
     sNo = num2str(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -491,6 +506,8 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run2_kspace.file{1,1}.path = ffname;
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run2_kspace.status = '1';
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run2_kspace.message = 'k-space data was received';
     end
 
 end
@@ -524,7 +541,7 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -532,6 +549,8 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_1.rs_fMRI_run1_kspace.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_1.rs_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run1_kspace.status = '1';
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run1_kspace.message = 'k-space data was received';
     end
 
 
@@ -550,7 +569,7 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status)
     end
     
     sNo = num2str(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -558,6 +577,8 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_1.rs_fMRI_run2_kspace.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_1.rs_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run2_kspace.status = '1';
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run2_kspace.message = 'k-space data was received';
     end
 
 end
@@ -591,7 +612,7 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -599,6 +620,8 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1_kspace.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run1_kspace.status = '1';
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run1_kspace.message = 'k-space data was received';
     end
 
 
@@ -617,7 +640,7 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status)
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.tgz');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -625,6 +648,8 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_2.rs_fMRI_run2_kspace.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_2.rs_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run2_kspace.status = '1';
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run2_kspace.message = 'k-space data was received';
     end
 
 end

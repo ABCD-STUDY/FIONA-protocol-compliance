@@ -76,7 +76,7 @@ requiredStruct = requiredStruct(idx);
 [phantom_result] = check_phantomQA(requiredStruct, phantom_compliance_key);
 
 if phantom_result
-    phantom_compliance(requiredStruct, phantom_compliance_key, compliance_output, output) 
+    phantom_compliance(requiredStruct, phantom_compliance_key, compliance_output, output, datastore) 
 else
     human_compliance(requiredStruct, compliance_key, compliance_output, output, datastore);
 end;
