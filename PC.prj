@@ -1,9 +1,9 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="3138436575" file="/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.9/PC.prj" location="/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.9" name="PC" preferred-package-location="/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.9/PC/for_redistribution" preferred-package-type="package.type.install" target="target.ezdeploy.standalone" target-name="MATLAB Compiler for Standalone Applications">
+  <configuration build-checksum="500954561" file="/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.10/PC.prj" location="/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.10" name="PC" preferred-package-location="/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.10/PC/for_redistribution" preferred-package-type="package.type.install" target="target.ezdeploy.standalone" target-name="MATLAB Compiler for Standalone Applications">
     <param.appname>PC</param.appname>
     <param.icon />
     <param.icons />
-    <param.version>1.9</param.version>
+    <param.version>1.10</param.version>
     <param.authnamewatermark />
     <param.email />
     <param.company />
@@ -107,10 +107,10 @@
     </fileset.resources>
     <fileset.package />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}/PC/for_testing" name="run_PC.sh" optional="false">/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.9/PC/for_testing/run_PC.sh</file>
-      <file location="${PROJECT_ROOT}/PC/for_testing" name="PC" optional="false">/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.9/PC/for_testing/PC</file>
-      <file location="${PROJECT_ROOT}/PC/for_testing" name="readme.txt" optional="true">/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.9/PC/for_testing/readme.txt</file>
-      <file location="${PROJECT_ROOT}/PC/for_testing" name="splash.png" optional="false">/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.9/PC/for_testing/splash.png</file>
+      <file location="${PROJECT_ROOT}/PC/for_testing" name="PC" optional="false">/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.10/PC/for_testing/PC</file>
+      <file location="${PROJECT_ROOT}/PC/for_testing" name="readme.txt" optional="true">/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.10/PC/for_testing/readme.txt</file>
+      <file location="${PROJECT_ROOT}/PC/for_testing" name="run_PC.sh" optional="false">/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.10/PC/for_testing/run_PC.sh</file>
+      <file location="${PROJECT_ROOT}/PC/for_testing" name="splash.png" optional="false">/home/jantolin/matlab/ABCD/ProtocolCompliance/v0.0.10/PC/for_testing/splash.png</file>
     </build-deliverables>
     <workflow />
     <matlab>

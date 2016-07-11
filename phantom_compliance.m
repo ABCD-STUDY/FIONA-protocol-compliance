@@ -86,7 +86,7 @@ end
 
 %======== Tag leftover series ====================%
         
-compliance_output = additionalSeriesParsing(compliance_output, requiredStruct);
+compliance_output = additionalSeriesParsing(compliance_output, requiredStruct, datastore);
 
 if (str2double(compliance_output.ABCD_Coil_QA.status)...,
         && str2double(compliance_output.ABCD_fBIRN_QA.status)...,
@@ -101,13 +101,19 @@ end
 
 %==========Get file size and paths====================%
 
+stUID = compliance_output.StudyInstanceUID;
+suidprefixpfile = 'SUID_';
+prefixpfile = '_subjid';
+pID = compliance_output.PatientID;
+
 if str2num(compliance_output.ABCD_Coil_QA.status)
     sUI = compliance_output.ABCD_Coil_QA.SeriesInstanceUID;
-    fname = sprintf('%s_%s.tar', stUID, sUI);
+    fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
     
     if ~isempty(fresult)
+        fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
         compliance_output.ABCD_Coil_QA.file{1,1}.path = ffname;
         compliance_output.ABCD_Coil_QA.file{1,1}.size = fresult.bytes;
@@ -118,11 +124,12 @@ end
 
 if str2num(compliance_output.ABCD_fBIRN_QA.status)
     sUI = compliance_output.ABCD_fBIRN_QA.SeriesInstanceUID;
-    fname = sprintf('%s_%s.tar', stUID, sUI);
+    fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
     
     if ~isempty(fresult)
+        fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
         compliance_output.ABCD_fBIRN_QA.file{1,1}.path = ffname;
         compliance_output.ABCD_fBIRN_QA.file{1,1}.size = fresult.bytes;
@@ -133,25 +140,29 @@ end
 
 if str2num(compliance_output.ABCD_MB_fMRI_QA.status)
     sUI = compliance_output.ABCD_MB_fMRI_QA.SeriesInstanceUID;
-    fname = sprintf('%s_%s.tar', stUID, sUI);
+    fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
     
     if ~isempty(fresult)
+        fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
         compliance_output.ABCD_MB_fMRI_QA.file{1,1}.path = ffname;
         compliance_output.ABCD_MB_fMRI_QA.file{1,1}.size = fresult.bytes;
     end
     
     sNo = num2str(compliance_output.ABCD_MB_fMRI_QA.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
     if ~isempty(fresult)
+        fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
-        compliance_output.ABCD_MB_fMRI_QA.kspace_file{1,1}.path = ffname;
-        compliance_output.ABCD_MB_fMRI_QA.kspace_file{1,1}.size = fresult.bytes;
+        compliance_output.ABCD_MB_fMRI_QA_kspace.file{1,1}.path = ffname;
+        compliance_output.ABCD_MB_fMRI_QA_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.ABCD_MB_fMRI_QA_kspace.status = '1';
+        compliance_output.ABCD_MB_fMRI_QA_kspace.message = 'k-space data was received';
     end
     
     
@@ -162,25 +173,29 @@ end
 
 if str2num(compliance_output.ABCD_Diffusion_QA.status)
     sUI = compliance_output.ABCD_Diffusion_QA.SeriesInstanceUID;
-    fname = sprintf('%s_%s.tar', stUID, sUI);
+    fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
     
     if ~isempty(fresult)
+        fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
         compliance_output.ABCD_Diffusion_QA.file{1,1}.path = ffname;
         compliance_output.ABCD_Diffusion_QA.file{1,1}.size = fresult.bytes;
     end
     
-    sNo = num2str(compliance_output.BCD_Diffusion_QA.SeriesNumber);
-    fname = strcat(prefixpfile, pID, '*se', sNo, '*.tgz');
+    sNo = num2str(compliance_output.ABCD_Diffusion_QA.SeriesNumber);
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
     if ~isempty(fresult)
+        fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
-        compliance_output.ABCD_Diffusion_QA.kspace_file{1,1}.path = ffname;
-        compliance_output.ABCD_Diffusion_QA.kspace_file{1,1}.size = fresult.bytes;
+        compliance_output.ABCD_Diffusion_QA_kspace.file{1,1}.path = ffname;
+        compliance_output.ABCD_Diffusion_QA_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.ABCD_Diffusion_QA_kspace.status = '1';
+        compliance_output.ABCD_Diffusion_QA_kspace.message = 'k-space data was received';
     end
     
 end
@@ -189,8 +204,6 @@ end
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 %if isdeployed    
     % write out proc.json for smart routing

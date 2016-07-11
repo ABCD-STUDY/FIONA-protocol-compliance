@@ -24,25 +24,34 @@
 			"message": "ABCD-MB-fMRI-QA classify type was not found",
             "file": [
                     {"path": "", "size": ""
-            }],
-            "kspace_file": [
+            }]            	
+		},
+        "ABCD_MB_fMRI_QA_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
+                "file": [
                     {"path": "", "size": ""
-            }]		
-		},  
+                }]	
+			},
         "ABCD_Diffusion_QA": {		
 			"status":"0",
             "SeriesNumber": "",
             "SeriesInstanceUID": "",
-			"message": "ABCD-Diffusion-QA classify type was not found"
+			"message": "ABCD-Diffusion-QA classify type was not found",
             "file": [
                     {"path": "", "size": ""
-            }],
-            "kspace_file": [
+            }]
+		},
+        "ABCD_Diffusion_QA_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
+                "file": [
                     {"path": "", "size": ""
-            }]	
-		},  
+                }]	
+        },
         "status": "0",
         "message": "Phantom QA protocol is not completed",
+        "shortmessage": "QA",
         "PatientID":"",
         "PatientName":"",
         "StudyDate": "",
@@ -51,9 +60,9 @@
         "Manufacturer": "",
         "ManufacturerModelName": "",
         "AdditionalSeries": [
-      {       "ClassifyType": [], "SeriesInstanceUID": "", "SeriesNumber": ""
+      {      
        }         
     ],
         "error_messages" : [],
-        "version": "0.0.9"
+        "version": "0.0.10"
 }
