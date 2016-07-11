@@ -3,8 +3,9 @@ function [compliance_output, requiredStruct] = check_rsfMRI_block_compliance_SIE
 %==========Any code to check rsfMRI_block compliance ==========%
 % Use rules in parsedExam to check compliance
 
+%%%% Check for the 2 runs rsfMRI experiment with FM
 
-for i=1:length(index)
+for i=1:2:length(index)
 
     testingSeries_rsfMRI_1 = requiredStruct(index(i));
     
@@ -13,10 +14,31 @@ for i=1:length(index)
     compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status = '1';
     compliance_output.rsfMRI_Block_1.rs_fMRI_run1.message = 'Resting state fMRI run is compliant with ABCD protocol';   
     
+    %First check that the sequence of events is compliant
+    
+    testingSeries_FM_fwd = requiredStruct(index(i)-2);
+    testingSeries_FM_rev = requiredStruct(index(i)-1);
+    
+    if cTypeFinder(testingSeries_FM_fwd.fullclassifyType, compliance_key{1,6}.classifyType) &&...,
+            cTypeFinder(testingSeries_FM_rev.fullclassifyType, compliance_key{1,7}.classifyType)
+        
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.SeriesInstanceUID = testingSeries_FM_fwd.SeriesInstanceUID;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.SeriesNumber = testingSeries_FM_fwd.SeriesNumber;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.SeriesInstanceUID = testingSeries_FM_rev.SeriesInstanceUID;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.SeriesNumber = testingSeries_FM_rev.SeriesNumber;
+
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.status = '1';
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.message = 'fMRI field map acquisition with PA phase encoding direction is compliant with ABCD protocol';   
+        
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.status = '1';
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.message = 'fMRI field map acquisition with AP phase encoding direction is compliant with ABCD protocol';   
+    end
+    
+        
     if length(requiredStruct) > index(i)
         testingSeries_rsfMRI_2 = requiredStruct(index(i)+1);
 
-        if cTypeFinder(testingSeries_rsfMRI_2.fullclassifyType, compliance_key{1,6}.classifyType)
+        if cTypeFinder(testingSeries_rsfMRI_2.fullclassifyType, compliance_key{1,8}.classifyType)
             compliance_output.rsfMRI_Block_1.rs_fMRI_run2.SeriesInstanceUID = testingSeries_rsfMRI_2.SeriesInstanceUID;
             compliance_output.rsfMRI_Block_1.rs_fMRI_run2.SeriesNumber = testingSeries_rsfMRI_2.SeriesNumber;
             compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status = '1';
@@ -25,28 +47,11 @@ for i=1:length(index)
         end
     end
     
-    testingSeries_FM_fwd = requiredStruct(index(i)-2);
-    testingSeries_FM_rev = requiredStruct(index(i)-1);
-    
-    if cTypeFinder(testingSeries_FM_fwd.fullclassifyType, compliance_key{1,5}.classifyType) &&...,
-            cTypeFinder(testingSeries_FM_rev.fullclassifyType, compliance_key{1,5}.classifyType)
-        
-        compliance_output.rsfMRI_Block_1.rs_fMRI_FM.SeriesInstanceUID{1} = testingSeries_FM_fwd.SeriesInstanceUID;
-        compliance_output.rsfMRI_Block_1.rs_fMRI_FM.SeriesNumber{1} = testingSeries_FM_fwd.SeriesNumber;
-        compliance_output.rsfMRI_Block_1.rs_fMRI_FM.SeriesInstanceUID{2} = testingSeries_FM_rev.SeriesInstanceUID;
-        compliance_output.rsfMRI_Block_1.rs_fMRI_FM.SeriesNumber{2} = testingSeries_FM_rev.SeriesNumber;
-        
-        if (testingSeries_FM_fwd.pePolarity == testingSeries_FM_rev.pePolarity) 
-            compliance_output.rsfMRI_Block_1.rs_fMRI_FM.message = 'Resting state field map volumes do not have different phase encoding polarity'; 
-        else
-            compliance_output.rsfMRI_Block_1.rs_fMRI_FM.status = '1';
-            compliance_output.rsfMRI_Block_1.rs_fMRI_FM.message = 'fMRI field map acquisition is compliant with ABCD protocol';       
-        end
-           
-    end
+
     
     %Assuming compliance of the first rs fMRI block
-    if str2double(compliance_output.rsfMRI_Block_1.rs_fMRI_FM.status) &&...,
+    if str2double(compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.status) &&...,
+            str2double(compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.status) &&...,
             str2double(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status) &&...,
             str2double(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status) 
     
@@ -58,7 +63,7 @@ for i=1:length(index)
         index(i) = [];
         index(i) = [];
         compliance_output.rsfMRI_Block_1.status = '1';
-        compliance_output.rsfMRI_Block_1.message = 'Compliant 1st resting state ABCD-fMRI component was found. Field map plus two rs fMRI runs';                
+        compliance_output.rsfMRI_Block_1.message = 'Compliant 1st resting state ABCD-fMRI component was found. Field map (two separate series with opposed phase encoding direction) plus two rs fMRI runs';                
         break;    
     end
     
@@ -69,7 +74,7 @@ end
 
 if (~isempty(index))
     
-    for i=1:length(index)
+    for i=1:2:length(index)
         
         testingSeries_rsfMRI_1 = requiredStruct(index(i));
 
@@ -78,10 +83,29 @@ if (~isempty(index))
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status = '1';
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1.message = 'Resting state fMRI run is compliant with ABCD protocol';   
         
+        testingSeries_FM_fwd = requiredStruct(index(i)-2);
+        testingSeries_FM_rev = requiredStruct(index(i)-1);
+    
+        if cTypeFinder(testingSeries_FM_fwd.fullclassifyType, compliance_key{1,6}.classifyType) &&...,
+            cTypeFinder(testingSeries_FM_rev.fullclassifyType, compliance_key{1,7}.classifyType)
+        
+            compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.SeriesInstanceUID = testingSeries_FM_fwd.SeriesInstanceUID;
+            compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.SeriesNumber = testingSeries_FM_fwd.SeriesNumber;
+            compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.SeriesInstanceUID = testingSeries_FM_rev.SeriesInstanceUID;
+            compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.SeriesNumber = testingSeries_FM_rev.SeriesNumber;
+
+            compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.status = '1';
+            compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.message = 'fMRI field map acquisition with PA phase encoding direction is compliant with ABCD protocol';   
+        
+            compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.status = '1';
+            compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.message = 'fMRI field map acquisition with AP phase encoding direction is compliant with ABCD protocol';   
+        end
+        
+             
         if length(requiredStruct) > index(i)
             testingSeries_rsfMRI_2 = requiredStruct(index(i)+1);
 
-            if cTypeFinder(testingSeries_rsfMRI_2.fullclassifyType, compliance_key{1,6}.classifyType)
+            if cTypeFinder(testingSeries_rsfMRI_2.fullclassifyType, compliance_key{1,8}.classifyType)
                 compliance_output.rsfMRI_Block_2.rs_fMRI_run2.SeriesInstanceUID = testingSeries_rsfMRI_2.SeriesInstanceUID;
                 compliance_output.rsfMRI_Block_2.rs_fMRI_run2.SeriesNumber = testingSeries_rsfMRI_2.SeriesNumber;
                 compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status = '1';
@@ -89,37 +113,17 @@ if (~isempty(index))
 
             end
         end
-        
-        testingSeries_FM_fwd = requiredStruct(index(i)-2);
-        testingSeries_FM_rev = requiredStruct(index(i)-1);
-    
-        if cTypeFinder(testingSeries_FM_fwd.fullclassifyType, compliance_key{1,5}.classifyType) &&...,
-            cTypeFinder(testingSeries_FM_rev.fullclassifyType, compliance_key{1,5}.classifyType)
-        
-            compliance_output.rsfMRI_Block_2.rs_fMRI_FM.SeriesInstanceUID{1} = testingSeries_FM_fwd.SeriesInstanceUID;
-            compliance_output.rsfMRI_Block_2.rs_fMRI_FM.SeriesNumber{1} = testingSeries_FM_fwd.SeriesNumber;
-            compliance_output.rsfMRI_Block_2.rs_fMRI_FM.SeriesInstanceUID{2} = testingSeries_FM_rev.SeriesInstanceUID;
-            compliance_output.rsfMRI_Block_2.rs_fMRI_FM.SeriesNumber{2} = testingSeries_FM_rev.SeriesNumber;
-
-            if (testingSeries_FM_fwd.pePolarity == testingSeries_FM_rev.pePolarity) 
-                compliance_output.rsfMRI_Block_2.rs_fMRI_FM.message = 'Resting state field map volumes do not have different phase encoding polarity'; 
-            else
-                compliance_output.rsfMRI_Block_2.rs_fMRI_FM.status = '1';
-                compliance_output.rsfMRI_Block_2.rs_fMRI_FM.message = 'fMRI field map acquisition is compliant with ABCD protocol';       
-            end
-           
-        end
-                
-        
+                     
         %Assuming compliance of the first rs fMRI block
-        if str2double(compliance_output.rsfMRI_Block_2.rs_fMRI_FM.status) &&...,
+        if str2double(compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.status) &&...,
+            str2double(compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.status) &&...,
             str2double(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status) 
     
             requiredStruct(index(i)-2)=[];
             requiredStruct(index(i)-2)=[];
             requiredStruct(index(i)-2)=[];
-            compliance_output.rsfMRI_Block_1.status = '1';
-            compliance_output.rsfMRI_Block_1.message = 'Compliant 2nd resting state ABCD-fMRI component was found. Field map plus two rs fMRI runs';                
+            compliance_output.rsfMRI_Block_2.status = '1';
+            compliance_output.rsfMRI_Block_2.message = 'Compliant 2nd resting state ABCD-fMRI component was found. Field map (two separate series with opposed phase encoding direction) plus two rs fMRI runs';                
 
             if  str2double(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status) 
                 requiredStruct(index(i)-2)=[];

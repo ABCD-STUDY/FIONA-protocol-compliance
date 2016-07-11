@@ -18,7 +18,16 @@
             }]
 		},
 		"DTI_Block": {
-			"DTI_FM": {
+			"DTI_FM_PA": {
+				"status":"0",
+                "SeriesNumber": "",
+                "SeriesInstanceUID": "",
+				"message": "",	
+                "file": [
+                    {"path": "", "size": ""
+                }]
+			},
+            "DTI_FM_AP": {
 				"status":"0",
                 "SeriesNumber": "",
                 "SeriesInstanceUID": "",
@@ -36,7 +45,14 @@
                     {"path": "", "size": ""
                 }]	
 			},
-            "DTI_FM_kspace": {
+            "DTI_FM_PA_kspace": {
+                "status":"0",
+                "message": "k-space data was not found",
+                "file": [
+                    {"path": "", "size": ""
+                }]	
+			},
+            "DTI_FM_AP_kspace": {
                 "status":"0",
                 "message": "k-space data was not found",
                 "file": [
@@ -51,10 +67,19 @@
                 }]	
 			},
 			"status": "0",
-			"message": "Compliant DTI component was not found. A compliant DTI component should include a Diffusion field map followed by a DTI acquisition"
+			"message": "Compliant DTI component was not found. A compliant DTI component should include a Diffusion field map (two volumes with oppossed phase encoding direction) followed by a DTI acquisition"
 		},
         "MID_fMRI_Block": {
-			"MID_fMRI_FM": {
+			"MID_fMRI_FM_PA": {
+				"status":"0",
+                "SeriesNumber": "",
+                "SeriesInstanceUID": "",
+				"message": "",
+                "file": [
+                    {"path": "", "size": ""
+                }]
+			},
+            "MID_fMRI_FM_AP": {
 				"status":"0",
                 "SeriesNumber": "",
                 "SeriesInstanceUID": "",
@@ -96,11 +121,20 @@
                 }]	
 			},
 			"status": "0",
-			"message": "Compliant MID fMRI task acquisition was not found. A compliant MID fMRI task component should include a fMRI field map followed by the MID fMRI task acquisition (two runs)"
+			"message": "Compliant MID fMRI task acquisition was not found. A compliant MID fMRI task component should include a fMRI field map (two volumes with oppossed phase encoding direction) followed by the MID fMRI task acquisition (two runs)"
 		},
 
         "SST_fMRI_Block": {
-			"SST_fMRI_FM": {
+			"SST_fMRI_FM_PA": {
+				"status":"0",
+                "SeriesNumber": "",
+                "SeriesInstanceUID": "",
+				"message": "",	
+                "file": [
+                    {"path": "", "size": ""
+                }]
+			},
+            "SST_fMRI_FM_AP": {
 				"status":"0",
                 "SeriesNumber": "",
                 "SeriesInstanceUID": "",
@@ -142,11 +176,20 @@
                 }]	
 			},
 			"status": "0",
-			"message": "Compliant SST fMRI task acquisition was not found. A compliant SST fMRI task component should include a fMRI field map followed by the SST fMRI task acquisition (two runs) "
+			"message": "Compliant SST fMRI task acquisition was not found. A compliant SST fMRI task component should include a fMRI field map (two volumes with oppossed phase encoding direction) followed by the SST fMRI task acquisition (two runs) "
 		},	
 
         "nBack_fMRI_Block": {
-			"nBack_fMRI_FM": {
+			"nBack_fMRI_FM_PA": {
+				"status":"0",
+                "SeriesNumber": "",
+                "SeriesInstanceUID": "",
+				"message": "",	
+                "file": [
+                    {"path": "", "size": ""
+                }]
+			},
+            "nBack_fMRI_FM_AP": {
 				"status":"0",
                 "SeriesNumber": "",
                 "SeriesInstanceUID": "",
@@ -188,10 +231,19 @@
                 }]	
 			},
 			"status": "0",
-			"message": "Compliant nBack fMRI task acquisition was not found. A compliant nBack fMRI task component should include a fMRI field map followed by the nBack fMRI task acquisition (two runs)"
+			"message": "Compliant nBack fMRI task acquisition was not found. A compliant nBack fMRI task component should include a fMRI field map (two volumes with oppossed phase encoding direction) followed by the nBack fMRI task acquisition (two runs)"
 		},		
 		"rsfMRI_Block_1": {
-			"rs_fMRI_FM": {
+			"rs_fMRI_FM_PA": {
+				"status":"0",
+                "SeriesNumber": "",
+				"SeriesInstanceUID": "",
+				"message": "",
+                "file": [
+                    {"path": "", "size": ""
+                }]	
+			},
+            "rs_fMRI_FM_AP": {
 				"status":"0",
                 "SeriesNumber": "",
 				"SeriesInstanceUID": "",
@@ -233,10 +285,19 @@
                 }]	
 			},
 			"status": "0",
-			"message": "Compliant 1st resting state fMRI component was not found. The first resting state fMRI component should include a rs fMRI field map followed by two rs fMRI runs"
+			"message": "Compliant 1st resting state fMRI component was not found. The first resting state fMRI component should include a rs fMRI field map (two volumes with oppossed phase encoding direction) followed by two rs fMRI runs"
         },
         "rsfMRI_Block_2": {
-			"rs_fMRI_FM": {
+			"rs_fMRI_FM_PA": {
+				"status":"0",
+                "SeriesNumber": "",
+				"SeriesInstanceUID": "",
+				"message": "",	
+                "file": [
+                    {"path": "", "size": ""
+                }]
+			},
+            "rs_fMRI_FM_AP": {
 				"status":"0",
                 "SeriesNumber": "",
 				"SeriesInstanceUID": "",
@@ -278,7 +339,7 @@
                 }]	
 			},
 			"status": "0",
-			"message": "Compliant 2nd resting state fMRI component was not found. The second resting state fMRI component should include a rs fMRI field map followed by one or two rs fMRI runs"
+			"message": "Compliant 2nd resting state fMRI component was not found. The second resting state fMRI component should include a rs fMRI field map (two volumes with oppossed phase encoding direction) followed by one or two rs fMRI runs"
 		},
         "status": "0",
         "message": "A completed compliant session was not found",

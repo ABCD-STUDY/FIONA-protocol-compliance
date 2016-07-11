@@ -1,6 +1,6 @@
 function [compliance_output, requiredStruct] = check_SST_task_compliance(compliance_output, requiredStruct, compliance_key, index)
 
-for i=1:length(index)    
+for i=1:2:length(index)    
 
     testingSeries_SST = requiredStruct(index(i));
     

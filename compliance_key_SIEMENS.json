@@ -1,0 +1,35 @@
+[
+	{
+		"classifyType": "ABCD-T1"
+	},
+	{
+		"classifyType": "ABCD-T2"
+	},
+	{
+		"classifyType": "ABCD-Diffusion-FM-PA"
+	},
+	{
+		"classifyType": "ABCD-Diffusion-FM-AP"
+	},
+	{
+		"classifyType": "ABCD-DTI"
+	},
+	{
+		"classifyType": "ABCD-fMRI-FM-PA"
+	},
+	{
+		"classifyType": "ABCD-fMRI-FM-AP"
+	},
+	{
+		"classifyType": "ABCD-rsfMRI"
+	},
+	{
+		"classifyType": "ABCD-MID-fMRI"
+	},
+	{
+		"classifyType": "ABCD-SST-fMRI"
+	},
+	{
+		"classifyType": "ABCD-nBack-fMRI"
+	}
+]

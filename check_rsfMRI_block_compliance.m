@@ -6,7 +6,7 @@ function [compliance_output, requiredStruct] = check_rsfMRI_block_compliance(com
 
 %%%% Check for the 2 runs rsfMRI experiment with FM
 
-for i=1:length(index)
+for i=1:2:length(index)
     
     testingSeries_rsfMRI_1 = requiredStruct(index(i));
     
@@ -59,7 +59,7 @@ end
 
 if (~isempty(index))
     
-    for i=1:length(index)
+    for i=1:2:length(index)
         
         testingSeries_rsfMRI_1 = requiredStruct(index(i));
 

@@ -1,4 +1,18 @@
-function human_compliance(requiredStruct, compliance_key, compliance_output, outdir, datastore)
+function human_compliance_SIEMENS(requiredStruct, compliance_key, c_output, outdir, datastore)
+
+%============Load SIEMENS compliance output json=======%
+
+compliance_output=loadjson('./compliance_output_SIEMENS.json');
+
+%%%Update key
+compliance_output.StudyDate = c_output.StudyDate;
+compliance_output.StudyTime =  c_output.StudyTime;
+compliance_output.StudyInstanceUID = c_output.StudyInstanceUID;
+compliance_output.Manufacturer = c_output.Manufacturer;
+compliance_output.ManufacturerModelName = c_output.Manufacturer;
+compliance_output.error_messages = c_output.error_messages;
+compliance_output.PatientID = c_output.PatientID;
+compliance_output.PatientName = c_output.PatientName;
 
 
 %======== Search for ABCD-T1 Series ================%
@@ -37,6 +51,8 @@ else
     compliance_output.T2.message = 'ABCD-T2 classify type was not found';
 end
 
+
+
 %======== Search for ABCD-DTI Block ================%
 
 %index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,3}.classifyType)==1);
@@ -44,53 +60,22 @@ end
 index = [];
 for i=1:length(requiredStruct)
     fullclassifyType = requiredStruct(i).fullclassifyType;
-    if(cTypeFinder(fullclassifyType, compliance_key{1,4}.classifyType))
+    if(cTypeFinder(fullclassifyType, compliance_key{1,5}.classifyType))
         index = [index i];
     end
 end
 
-if (~isempty(index))
-    [compliance_output, requiredStruct] = check_DTI_block_compliance(compliance_output, requiredStruct, compliance_key, index);
+if (~isempty(index)) 
+    [compliance_output, requiredStruct] = check_DTI_block_compliance_SIEMENS(compliance_output, requiredStruct, compliance_key, index);
 else
-    compliance_output.DTI_Block.message = 'Compliant DTI component was not found. A compliant DTI component should include a Diffusion field map followed by a DTI acquisition';
+    compliance_output.DTI_Block.message = 'Compliant DTI component was not found. A compliant DTI component should include a Diffusion field map (two volumes with oppossed phase encoding direction) followed by a DTI acquisition. ';
 end
+
 
 %======== Search for ABCD-rsFMRI Block ================%
 
 
 %index = find(strcmp({requiredStruct.classifyType}, compliance_key{1,5}.classifyType)==1);
-index = [];
-for i=1:length(requiredStruct)
-    fullclassifyType = requiredStruct(i).fullclassifyType;
-    if(cTypeFinder(fullclassifyType, compliance_key{1,6}.classifyType))
-        index = [index i];
-    end
-end
-
-if (~isempty(index))
-    [compliance_output, requiredStruct] = check_rsfMRI_block_compliance(compliance_output, requiredStruct, compliance_key, index);
-end
-
-
-%======== Search for ABCD-fMRI MID task ================%
-
-index = [];
-for i=1:length(requiredStruct)
-    fullclassifyType = requiredStruct(i).fullclassifyType;
-    if(cTypeFinder(fullclassifyType, compliance_key{1,7}.classifyType))
-        index = [index i];
-    end
-end
-
-if (~isempty(index))
-    [compliance_output, requiredStruct] = check_MID_task_compliance(compliance_output, requiredStruct, compliance_key, index);
-else
-    compliance_output.MID_fMRI_Block.message = 'Compliant MID fMRI task was not found. A compliant MID fMRI task component should include a fMRI field map followed by the MID fMRI task acquisition';
-end
-
-
-%======== Search for ABCD-fMRI SST task ================%
-
 index = [];
 for i=1:length(requiredStruct)
     fullclassifyType = requiredStruct(i).fullclassifyType;
@@ -100,12 +85,11 @@ for i=1:length(requiredStruct)
 end
 
 if (~isempty(index))
-    [compliance_output, requiredStruct] = check_SST_task_compliance(compliance_output, requiredStruct, compliance_key, index);
-else
-    compliance_output.SST_fMRI_Block.message = 'Compliant SST fMRI task was not found. A compliant SST fMRI task component should include a fMRI field map followed by the SST fMRI task acquisition';
+    [compliance_output, requiredStruct] = check_rsfMRI_block_compliance_SIEMENS(compliance_output, requiredStruct, compliance_key, index);
 end
 
-%======== Search for ABCD-fMRI nBack task ================%
+
+%======== Search for ABCD-fMRI MID task ================%
 
 index = [];
 for i=1:length(requiredStruct)
@@ -116,17 +100,47 @@ for i=1:length(requiredStruct)
 end
 
 if (~isempty(index))
-    [compliance_output, requiredStruct] = check_nBack_task_compliance(compliance_output, requiredStruct, compliance_key, index);
+    [compliance_output, requiredStruct] = check_MID_task_compliance_SIEMENS(compliance_output, requiredStruct, compliance_key, index);
 else
-    compliance_output.nBack_fMRI_Block.message = 'Compliant nBack fMRI task was not found. A compliant nBack fMRI task component should include a fMRI field map followed by the nBack fMRI task acquisition';
+    compliance_output.MID_fMRI_Block.message = 'Compliant MID fMRI task was not found. A compliant MID fMRI task component should include a fMRI field map (two volumes with oppossed phase encoding direction) followed by the MID fMRI task acquisition';
 end
 
 
+%======== Search for ABCD-fMRI SST task ================%
+
+index = [];
+for i=1:length(requiredStruct)
+    fullclassifyType = requiredStruct(i).fullclassifyType;
+    if(cTypeFinder(fullclassifyType, compliance_key{1,10}.classifyType))
+        index = [index i];
+    end
+end
+
+if (~isempty(index))
+    [compliance_output, requiredStruct] = check_SST_task_compliance_SIEMENS(compliance_output, requiredStruct, compliance_key, index);
+else
+    compliance_output.SST_fMRI_Block.message = 'Compliant SST fMRI task was not found. A compliant SST fMRI task component should include a fMRI field map (two volumes with oppossed phase encoding direction) followed by the SST fMRI task acquisition';
+end
+
+%======== Search for ABCD-fMRI nBack task ================%
+
+index = [];
+for i=1:length(requiredStruct)
+    fullclassifyType = requiredStruct(i).fullclassifyType;
+    if(cTypeFinder(fullclassifyType, compliance_key{1,11}.classifyType))
+        index = [index i];
+    end
+end
+
+if (~isempty(index))
+    [compliance_output, requiredStruct] = check_nBack_task_compliance_SIEMENS(compliance_output, requiredStruct, compliance_key, index);
+else
+    compliance_output.nBack_fMRI_Block.message = 'Compliant nBack fMRI task was not found. A compliant nBack fMRI task component should include a fMRI field map  (two volumes with oppossed phase encoding direction)followed by the nBack fMRI task acquisition';
+end
 
 %======== Tag leftover series ====================%
         
 compliance_output = additionalSeriesParsing(compliance_output, requiredStruct, datastore);
-
 
 
 %==== Check possible compliances (Full, subsession) ===%
@@ -227,8 +241,8 @@ end
 
 %%%
 
-if str2num(compliance_output.DTI_Block.DTI_FM.status)
-    sUI = compliance_output.DTI_Block.DTI_FM.SeriesInstanceUID;
+if str2num(compliance_output.DTI_Block.DTI_FM_PA.status)
+    sUI = compliance_output.DTI_Block.DTI_FM_PA.SeriesInstanceUID;
     fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
@@ -236,11 +250,11 @@ if str2num(compliance_output.DTI_Block.DTI_FM.status)
     if ~isempty(fresult)
         fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
-        compliance_output.DTI_Block.DTI_FM.file{1,1}.path = ffname;
-        compliance_output.DTI_Block.DTI_FM.file{1,1}.size = fresult.bytes;
+        compliance_output.DTI_Block.DTI_FM_PA.file{1,1}.path = ffname;
+        compliance_output.DTI_Block.DTI_FM_PA.file{1,1}.size = fresult.bytes;
     end
 
-    sNo = num2str(compliance_output.DTI_Block.DTI_FM.SeriesNumber);
+    sNo = num2str(compliance_output.DTI_Block.DTI_FM_PA.SeriesNumber);
     fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
@@ -248,13 +262,44 @@ if str2num(compliance_output.DTI_Block.DTI_FM.status)
     if ~isempty(fresult)
         fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
-        compliance_output.DTI_Block.DTI_FM_kspace.file{1,1}.path = ffname;
-        compliance_output.DTI_Block.DTI_FM_kspace.file{1,1}.size = fresult.bytes;
-        compliance_output.DTI_Block.DTI_FM_kspace.status = '1';
-        compliance_output.DTI_Block.DTI_FM_kspace.message = 'k-space data was received';
+        compliance_output.DTI_Block.DTI_FM_PA_kspace.file{1,1}.path = ffname;
+        compliance_output.DTI_Block.DTI_FM_PA_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.DTI_Block.DTI_FM_PA_kspace.status = '1';
+        compliance_output.DTI_Block.DTI_FM_PA_kspace.message = 'k-space data was received';
     end
 
 end
+
+
+if str2num(compliance_output.DTI_Block.DTI_FM_AP.status)
+    sUI = compliance_output.DTI_Block.DTI_FM_AP.SeriesInstanceUID;
+    fname = sprintf('%s_%s.t*', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        fresult = fresult(1,1);
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.DTI_Block.DTI_FM_AP.file{1,1}.path = ffname;
+        compliance_output.DTI_Block.DTI_FM_AP.file{1,1}.size = fresult.bytes;
+    end
+
+    sNo = num2str(compliance_output.DTI_Block.DTI_FM_AP.SeriesNumber);
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+
+    if ~isempty(fresult)
+        fresult = fresult(1,1);
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.DTI_Block.DTI_FM_AP_kspace.file{1,1}.path = ffname;
+        compliance_output.DTI_Block.DTI_FM_AP_kspace.file{1,1}.size = fresult.bytes;
+        compliance_output.DTI_Block.DTI_FM_AP_kspace.status = '1';
+        compliance_output.DTI_Block.DTI_FM_AP_kspace.message = 'k-space data was received';
+    end
+
+end
+
 
 if str2num(compliance_output.DTI_Block.DTI.status)
     sUI = compliance_output.DTI_Block.DTI.SeriesInstanceUID;
@@ -288,8 +333,8 @@ end
 
 %%%
 
-if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_FM.status)
-    sUI = compliance_output.MID_fMRI_Block.MID_fMRI_FM.SeriesInstanceUID;
+if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_FM_PA.status)
+    sUI = compliance_output.MID_fMRI_Block.MID_fMRI_FM_PA.SeriesInstanceUID;
     fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
@@ -297,11 +342,27 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_FM.status)
     if ~isempty(fresult)
         fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
-        compliance_output.MID_fMRI_Block.MID_fMRI_FM.file{1,1}.path = ffname;
-        compliance_output.MID_fMRI_Block.MID_fMRI_FM.file{1,1}.size = fresult.bytes;
+        compliance_output.MID_fMRI_Block.MID_fMRI_FM_PA.file{1,1}.path = ffname;
+        compliance_output.MID_fMRI_Block.MID_fMRI_FM_PA.file{1,1}.size = fresult.bytes;
     end
 
 end
+
+if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_FM_AP.status)
+    sUI = compliance_output.MID_fMRI_Block.MID_fMRI_FM_AP.SeriesInstanceUID;
+    fname = sprintf('%s_%s.t*', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        fresult = fresult(1,1);
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.MID_fMRI_Block.MID_fMRI_FM_AP.file{1,1}.path = ffname;
+        compliance_output.MID_fMRI_Block.MID_fMRI_FM_AP.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
 
 if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run1.status)
     sUI = compliance_output.MID_fMRI_Block.MID_fMRI_run1.SeriesInstanceUID;
@@ -362,8 +423,8 @@ end
 
 %%%
 
-if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_FM.status)
-    sUI = compliance_output.SST_fMRI_Block.SST_fMRI_FM.SeriesInstanceUID;
+if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_FM_PA.status)
+    sUI = compliance_output.MID_fMRI_Block.SST_fMRI_FM_PA.SeriesInstanceUID;
     fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
@@ -371,12 +432,29 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_FM.status)
     if ~isempty(fresult)
         fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
-        compliance_output.SST_fMRI_Block.SST_fMRI_FM.file{1,1}.path = ffname;
-        compliance_output.SST_fMRI_Block.SST_fMRI_FM.file{1,1}.size = fresult.bytes;
+        compliance_output.SST_fMRI_Block.SST_fMRI_FM_PA.file{1,1}.path = ffname;
+        compliance_output.SST_fMRI_Block.SST_fMRI_FM_PA.file{1,1}.size = fresult.bytes;
     end
 
 
 end
+
+if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_FM_AP.status)
+    sUI = compliance_output.MID_fMRI_Block.SST_fMRI_FM_AP.SeriesInstanceUID;
+    fname = sprintf('%s_%s.t*', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        fresult = fresult(1,1);
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.SST_fMRI_Block.SST_fMRI_FM_AP.file{1,1}.path = ffname;
+        compliance_output.SST_fMRI_Block.SST_fMRI_FM_AP.file{1,1}.size = fresult.bytes;
+    end
+
+
+end
+
 
 if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run1.status)
     sUI = compliance_output.SST_fMRI_Block.SST_fMRI_run1.SeriesInstanceUID;
@@ -438,8 +516,8 @@ end
 
 %%%
 
-if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.status)
-    sUI = compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.SeriesInstanceUID;
+if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.status)
+    sUI = compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.SeriesInstanceUID;
     fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
@@ -447,8 +525,23 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.status)
     if ~isempty(fresult)
         fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
-        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.file{1,1}.path = ffname;
-        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM.file{1,1}.size = fresult.bytes;
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.file{1,1}.path = ffname;
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.status)
+    sUI = compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.SeriesInstanceUID;
+    fname = sprintf('%s_%s.t*', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        fresult = fresult(1,1);
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.file{1,1}.path = ffname;
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.file{1,1}.size = fresult.bytes;
     end
 
 end
@@ -489,7 +582,7 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.status)
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
     
-    if ~isempty(fresult)  
+    if ~isempty(fresult)
         fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.file{1,1}.path = ffname;
@@ -514,8 +607,8 @@ end
 
 %%%
 
-if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_FM.status)
-    sUI = compliance_output.rsfMRI_Block_1.rs_fMRI_FM.SeriesInstanceUID;
+if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.status)
+    sUI = compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.SeriesInstanceUID;
     fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
@@ -523,8 +616,23 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_FM.status)
     if ~isempty(fresult)
         fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
-        compliance_output.rsfMRI_Block_1.rs_fMRI_FM.file{1,1}.path = ffname;
-        compliance_output.rsfMRI_Block_1.rs_fMRI_FM.file{1,1}.size = fresult.bytes;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.status)
+    sUI = compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.SeriesInstanceUID;
+    fname = sprintf('%s_%s.t*', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        fresult = fresult(1,1);
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.file{1,1}.size = fresult.bytes;
     end
 
 end
@@ -590,8 +698,8 @@ end
 
 %%%
 
-if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_FM.status)
-    sUI = compliance_output.rsfMRI_Block_2.rs_fMRI_FM.SeriesInstanceUID;
+if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.status)
+    sUI = compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.SeriesInstanceUID;
     fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
@@ -599,8 +707,23 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_FM.status)
     if ~isempty(fresult)
         fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
-        compliance_output.rsfMRI_Block_2.rs_fMRI_FM.file{1,1}.path = ffname;
-        compliance_output.rsfMRI_Block_2.rs_fMRI_FM.file{1,1}.size = fresult.bytes;
+        compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.file{1,1}.size = fresult.bytes;
+    end
+
+end
+
+if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.status)
+    sUI = compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.SeriesInstanceUID;
+    fname = sprintf('%s_%s.t*', stUID, sUI);
+    ffname = fullfile (datastore, fname);
+    fresult = dir(ffname);
+    
+    if ~isempty(fresult)
+        fresult = fresult(1,1);
+        ffname = fullfile(datastore,fresult.name);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.file{1,1}.path = ffname;
+        compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.file{1,1}.size = fresult.bytes;
     end
 
 end
@@ -664,6 +787,10 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status)
 
 end
 
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %if isdeployed    
@@ -674,3 +801,5 @@ end
     opt.NoRowBracket = 1;
     savejson('',compliance_output,opt);
 %end
+
+

@@ -17,6 +17,8 @@ end
 
 phantom_compliance_key=loadjson('./phantom_compliance_key.json');
 compliance_key=loadjson('./compliance_key.json');
+compliance_key_siemens=loadjson('./compliance_key_SIEMENS.json');
+
 compliance_output=loadjson('./compliance_output.json');
 
 
@@ -48,9 +50,6 @@ for i=1:length(filelist)
     end
     requiredStruct(i).fullclassifyType = parsedExam.ClassifyType;
     requiredStruct(i).manufacturer = parsedExam.Manufacturer;
-    if (strcmp(requiredStruct(i).manufacturer, 'SIEMENS'))
-       requiredStruct(i).pePolarity = parsedExam.PhaseEncodingDirectionPositive; 
-    end
     requiredStruct(i).SeriesInstanceUID = parsedExam.SeriesInstanceUID;
     requiredStruct(i).SeriesNumber = str2double(parsedExam.SeriesNumber);
     
@@ -77,10 +76,16 @@ requiredStruct = requiredStruct(idx);
 
 if phantom_result
     phantom_compliance(requiredStruct, phantom_compliance_key, compliance_output, output, datastore) 
-else
-    human_compliance(requiredStruct, compliance_key, compliance_output, output, datastore);
-end;
 
+else
+    if any(strfind(parsedExam.Manufacturer, 'GE'))
+        human_compliance(requiredStruct, compliance_key, compliance_output, output, datastore);
+    elseif any(strfind(parsedExam.Manufacturer, 'SIEMENS')) 
+        human_compliance_SIEMENS(requiredStruct, compliance_key_siemens, compliance_output, output, datastore);
+    else
+        human_compliance(requiredStruct, compliance_key, compliance_output, output, datastore); %For now if the manufacturer cannot be identified, the script will run as if it was GE data
+    end
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
