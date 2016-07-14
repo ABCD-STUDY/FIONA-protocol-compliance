@@ -117,6 +117,9 @@ if str2num(compliance_output.ABCD_Coil_QA.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.ABCD_Coil_QA.file{1,1}.path = ffname;
         compliance_output.ABCD_Coil_QA.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.ABCD_Coil_QA.file{1,1}.path = ffname;
     end
 end
 
@@ -133,6 +136,9 @@ if str2num(compliance_output.ABCD_fBIRN_QA.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.ABCD_fBIRN_QA.file{1,1}.path = ffname;
         compliance_output.ABCD_fBIRN_QA.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.ABCD_fBIRN_QA.file{1,1}.path = ffname;
     end
 end
 
@@ -149,6 +155,9 @@ if str2num(compliance_output.ABCD_MB_fMRI_QA.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.ABCD_MB_fMRI_QA.file{1,1}.path = ffname;
         compliance_output.ABCD_MB_fMRI_QA.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.ABCD_MB_fMRI_QA.file{1,1}.path = ffname;
     end
     
     sNo = num2str(compliance_output.ABCD_MB_fMRI_QA.SeriesNumber);
@@ -163,6 +172,9 @@ if str2num(compliance_output.ABCD_MB_fMRI_QA.status)
         compliance_output.ABCD_MB_fMRI_QA_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.ABCD_MB_fMRI_QA_kspace.status = '1';
         compliance_output.ABCD_MB_fMRI_QA_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.ABCD_MB_fMRI_QA_kspace.file{1,1}.path = ffname;
     end
     
     
@@ -182,6 +194,9 @@ if str2num(compliance_output.ABCD_Diffusion_QA.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.ABCD_Diffusion_QA.file{1,1}.path = ffname;
         compliance_output.ABCD_Diffusion_QA.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.ABCD_Diffusion_QA.file{1,1}.path = ffname;
     end
     
     sNo = num2str(compliance_output.ABCD_Diffusion_QA.SeriesNumber);
@@ -196,6 +211,9 @@ if str2num(compliance_output.ABCD_Diffusion_QA.status)
         compliance_output.ABCD_Diffusion_QA_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.ABCD_Diffusion_QA_kspace.status = '1';
         compliance_output.ABCD_Diffusion_QA_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.ABCD_Diffusion_QA_kspace.file{1,1}.path = ffname;
     end
     
 end

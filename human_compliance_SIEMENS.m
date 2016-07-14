@@ -219,6 +219,9 @@ if str2num(compliance_output.T1.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.T1.file{1,1}.path = ffname;
         compliance_output.T1.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.T1.file{1,1}.path = ffname;
     end
 end
 
@@ -235,6 +238,9 @@ if str2num(compliance_output.T2.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.T2.file{1,1}.path = ffname;
         compliance_output.T2.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.T2.file{1,1}.path = ffname;
     end
 
 end
@@ -252,6 +258,9 @@ if str2num(compliance_output.DTI_Block.DTI_FM_PA.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.DTI_Block.DTI_FM_PA.file{1,1}.path = ffname;
         compliance_output.DTI_Block.DTI_FM_PA.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.DTI_Block.DTI_FM_PA.file{1,1}.path = ffname;  
     end
 
     sNo = num2str(compliance_output.DTI_Block.DTI_FM_PA.SeriesNumber);
@@ -266,6 +275,9 @@ if str2num(compliance_output.DTI_Block.DTI_FM_PA.status)
         compliance_output.DTI_Block.DTI_FM_PA_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.DTI_Block.DTI_FM_PA_kspace.status = '1';
         compliance_output.DTI_Block.DTI_FM_PA_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.DTI_Block.DTI_FM_PA_kspace.file{1,1}.path = ffname; 
     end
 
 end
@@ -282,6 +294,9 @@ if str2num(compliance_output.DTI_Block.DTI_FM_AP.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.DTI_Block.DTI_FM_AP.file{1,1}.path = ffname;
         compliance_output.DTI_Block.DTI_FM_AP.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.DTI_Block.DTI_FM_AP.file{1,1}.path = ffname;   
     end
 
     sNo = num2str(compliance_output.DTI_Block.DTI_FM_AP.SeriesNumber);
@@ -296,6 +311,9 @@ if str2num(compliance_output.DTI_Block.DTI_FM_AP.status)
         compliance_output.DTI_Block.DTI_FM_AP_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.DTI_Block.DTI_FM_AP_kspace.status = '1';
         compliance_output.DTI_Block.DTI_FM_AP_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.DTI_Block.DTI_FM_AP_kspace.file{1,1}.path = ffname;   
     end
 
 end
@@ -312,6 +330,9 @@ if str2num(compliance_output.DTI_Block.DTI.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.DTI_Block.DTI.file{1,1}.path = ffname;
         compliance_output.DTI_Block.DTI.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.DTI_Block.DTI.file{1,1}.path = ffname;   
     end
 
     sNo = num2str(compliance_output.DTI_Block.DTI.SeriesNumber);
@@ -326,6 +347,9 @@ if str2num(compliance_output.DTI_Block.DTI.status)
         compliance_output.DTI_Block.DTI_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.DTI_Block.DTI_kspace.status = '1';
         compliance_output.DTI_Block.DTI_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.DTI_Block.DTI_kspace.file{1,1}.path = ffname;   
     end
 
 end
@@ -344,6 +368,9 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_FM_PA.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.MID_fMRI_Block.MID_fMRI_FM_PA.file{1,1}.path = ffname;
         compliance_output.MID_fMRI_Block.MID_fMRI_FM_PA.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.MID_fMRI_Block.MID_fMRI_FM_PA.file{1,1}.path = ffname;   
     end
 
 end
@@ -359,6 +386,9 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_FM_AP.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.MID_fMRI_Block.MID_fMRI_FM_AP.file{1,1}.path = ffname;
         compliance_output.MID_fMRI_Block.MID_fMRI_FM_AP.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.MID_fMRI_Block.MID_fMRI_FM_AP.file{1,1}.path = ffname;   
     end
 
 end
@@ -375,6 +405,9 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run1.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.MID_fMRI_Block.MID_fMRI_run1.file{1,1}.path = ffname;
         compliance_output.MID_fMRI_Block.MID_fMRI_run1.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.MID_fMRI_Block.MID_fMRI_run1.file{1,1}.path = ffname;   
     end
 
     sNo = num2str(compliance_output.MID_fMRI_Block.MID_fMRI_run1.SeriesNumber);
@@ -389,8 +422,10 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run1.status)
         compliance_output.MID_fMRI_Block.MID_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.MID_fMRI_Block.MID_fMRI_run1_kspace.status = '1';
         compliance_output.MID_fMRI_Block.MID_fMRI_run1_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.MID_fMRI_Block.MID_fMRI_run1_kspace.file{1,1}.path = ffname;   
     end
-
 
 end
 
@@ -404,7 +439,10 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run2.status)
         fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
         compliance_output.MID_fMRI_Block.MID_fMRI_run2.file{1,1}.path = ffname;
-        compliance_output.MID_fMRI_Block.MID_fMRI_run2.file{1,1}.size = fresult.bytes;
+        compliance_output.MID_fMRI_Block.MID_fMRI_run2.file{1,1}.size = fresult.bytes;        
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.MID_fMRI_Block.MID_fMRI_run2.file{1,1}.path = ffname;   
     end
     sNo = num2str(compliance_output.MID_fMRI_Block.MID_fMRI_run2.SeriesNumber);
     fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
@@ -418,6 +456,9 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run2.status)
         compliance_output.MID_fMRI_Block.MID_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.MID_fMRI_Block.MID_fMRI_run2_kspace.status = '1';
         compliance_output.MID_fMRI_Block.MID_fMRI_run2_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.MID_fMRI_Block.MID_fMRI_run2_kspace.file{1,1}.path = ffname;   
     end
 end
 
@@ -434,6 +475,9 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_FM_PA.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.SST_fMRI_Block.SST_fMRI_FM_PA.file{1,1}.path = ffname;
         compliance_output.SST_fMRI_Block.SST_fMRI_FM_PA.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.SST_fMRI_Block.SST_fMRI_FM_PA.file{1,1}.path = ffname;   
     end
 
 
@@ -450,6 +494,9 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_FM_AP.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.SST_fMRI_Block.SST_fMRI_FM_AP.file{1,1}.path = ffname;
         compliance_output.SST_fMRI_Block.SST_fMRI_FM_AP.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.SST_fMRI_Block.SST_fMRI_FM_AP.file{1,1}.path = ffname;   
     end
 
 
@@ -467,6 +514,9 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run1.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.SST_fMRI_Block.SST_fMRI_run1.file{1,1}.path = ffname;
         compliance_output.SST_fMRI_Block.SST_fMRI_run1.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.SST_fMRI_Block.SST_fMRI_run1.file{1,1}.path = ffname;   
     end
 
     sNo = num2str(compliance_output.SST_fMRI_Block.SST_fMRI_run1.SeriesNumber);
@@ -481,6 +531,9 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run1.status)
         compliance_output.SST_fMRI_Block.SST_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.SST_fMRI_Block.SST_fMRI_run1_kspace.status = '1';
         compliance_output.SST_fMRI_Block.SST_fMRI_run1_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.SST_fMRI_Block.SST_fMRI_run1_kspace.file{1,1}.path = ffname;
     end
 
 end
@@ -496,6 +549,9 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run2.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.SST_fMRI_Block.SST_fMRI_run2.file{1,1}.path = ffname;
         compliance_output.SST_fMRI_Block.SST_fMRI_run2.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.SST_fMRI_Block.SST_fMRI_run2.file{1,1}.path = ffname;
     end
 
     sNo = num2str(compliance_output.SST_fMRI_Block.SST_fMRI_run2.SeriesNumber);
@@ -510,6 +566,9 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run2.status)
         compliance_output.SST_fMRI_Block.SST_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.SST_fMRI_Block.SST_fMRI_run2_kspace.status = '1';
         compliance_output.SST_fMRI_Block.SST_fMRI_run2_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.SST_fMRI_Block.SST_fMRI_run2_kspace.file{1,1}.path = ffname;
     end
 
 end
@@ -527,6 +586,9 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.file{1,1}.path = ffname;
         compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.file{1,1}.path = ffname;
     end
 
 end
@@ -542,6 +604,9 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.file{1,1}.path = ffname;
         compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.file{1,1}.path = ffname;
     end
 
 end
@@ -557,6 +622,9 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.file{1,1}.path = ffname;
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.file{1,1}.path = ffname;
     end
     
     sNo = num2str(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.SeriesNumber);
@@ -571,6 +639,9 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.status)
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run1_kspace.status = '1';
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run1_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run1_kspace.file{1,1}.path = ffname;
     end
 
 
@@ -582,11 +653,14 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.status)
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
     
-    if ~isempty(fresult)
+    if ~isempty(fresult)  
         fresult = fresult(1,1);
         ffname = fullfile(datastore,fresult.name);
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.file{1,1}.path = ffname;
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.file{1,1}.path = ffname;
     end
 
     sNo = num2str(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.SeriesNumber);
@@ -601,6 +675,9 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.status)
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run2_kspace.status = '1';
         compliance_output.nBack_fMRI_Block.nBack_fMRI_run2_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run2_kspace.file{1,1}.path = ffname;
     end
 
 end
@@ -618,6 +695,9 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.file{1,1}.path = ffname;
     end
 
 end
@@ -633,6 +713,9 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.file{1,1}.path = ffname;
     end
 
 end
@@ -648,6 +731,9 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_1.rs_fMRI_run1.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_1.rs_fMRI_run1.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run1.file{1,1}.path = ffname;
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.SeriesNumber);
@@ -662,6 +748,9 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status)
         compliance_output.rsfMRI_Block_1.rs_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.rsfMRI_Block_1.rs_fMRI_run1_kspace.status = '1';
         compliance_output.rsfMRI_Block_1.rs_fMRI_run1_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run1_kspace.file{1,1}.path = ffname;
     end
 
 
@@ -678,6 +767,9 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_1.rs_fMRI_run2.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_1.rs_fMRI_run2.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run2.file{1,1}.path = ffname;
     end
     
     sNo = num2str(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.SeriesNumber);
@@ -692,6 +784,9 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status)
         compliance_output.rsfMRI_Block_1.rs_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.rsfMRI_Block_1.rs_fMRI_run2_kspace.status = '1';
         compliance_output.rsfMRI_Block_1.rs_fMRI_run2_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run2_kspace.file{1,1}.path = ffname;    
     end
 
 end
@@ -709,6 +804,9 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.file{1,1}.path = ffname; 
     end
 
 end
@@ -724,6 +822,9 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.file{1,1}.path = ffname; 
     end
 
 end
@@ -739,6 +840,9 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run1.file{1,1}.path = ffname;
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.SeriesNumber);
@@ -753,6 +857,9 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status)
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1_kspace.status = '1';
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run1_kspace.file{1,1}.path = ffname;    
     end
 
 
@@ -769,6 +876,9 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status)
         ffname = fullfile(datastore,fresult.name);
         compliance_output.rsfMRI_Block_2.rs_fMRI_run2.file{1,1}.path = ffname;
         compliance_output.rsfMRI_Block_2.rs_fMRI_run2.file{1,1}.size = fresult.bytes;
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run2.file{1,1}.path = ffname;       
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.SeriesNumber);
@@ -783,6 +893,9 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status)
         compliance_output.rsfMRI_Block_2.rs_fMRI_run2_kspace.file{1,1}.size = fresult.bytes;
         compliance_output.rsfMRI_Block_2.rs_fMRI_run2_kspace.status = '1';
         compliance_output.rsfMRI_Block_2.rs_fMRI_run2_kspace.message = 'k-space data was received';
+    else
+        ffname = fullfile('/unknown', fname);
+        compliance_output.rsfMRI_Block_2.rs_fMRI_run2_kspace.file{1,1}.path = ffname;   
     end
 
 end

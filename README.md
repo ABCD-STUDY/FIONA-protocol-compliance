@@ -6,6 +6,7 @@ Matlab script for ABCD study protocol compliance
 ### 0.0.10 (latest stable)
 
 - supports phantom QA acquisitions from GE as long as at least one series presents a valid phantom classify type
+- includes expected filename for all series
 
 ### 0.0.9
 
