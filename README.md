@@ -3,7 +3,11 @@ Matlab script for ABCD study protocol compliance
 
 ## Version history
 
-### 0.0.10 (latest stable)
+### 0.0.11 (latest stable)
+
+- Searches for dicom and k-space files for each of the additional series exams
+
+### 0.0.10
 
 - supports phantom QA acquisitions from GE as long as at least one series presents a valid phantom classify type
 - includes expected filename for all series

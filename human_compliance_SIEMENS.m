@@ -264,7 +264,7 @@ if str2num(compliance_output.DTI_Block.DTI_FM_PA.status)
     end
 
     sNo = num2str(compliance_output.DTI_Block.DTI_FM_PA.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -300,7 +300,7 @@ if str2num(compliance_output.DTI_Block.DTI_FM_AP.status)
     end
 
     sNo = num2str(compliance_output.DTI_Block.DTI_FM_AP.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -336,7 +336,7 @@ if str2num(compliance_output.DTI_Block.DTI.status)
     end
 
     sNo = num2str(compliance_output.DTI_Block.DTI.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -411,7 +411,7 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.MID_fMRI_Block.MID_fMRI_run1.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -445,7 +445,7 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run2.status)
         compliance_output.MID_fMRI_Block.MID_fMRI_run2.file{1,1}.path = ffname;   
     end
     sNo = num2str(compliance_output.MID_fMRI_Block.MID_fMRI_run2.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -520,7 +520,7 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.SST_fMRI_Block.SST_fMRI_run1.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -555,7 +555,7 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run2.status)
     end
 
     sNo = num2str(compliance_output.SST_fMRI_Block.SST_fMRI_run2.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -628,7 +628,7 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.status)
     end
     
     sNo = num2str(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -664,7 +664,7 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.status)
     end
 
     sNo = num2str(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -737,7 +737,7 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -773,7 +773,7 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status)
     end
     
     sNo = num2str(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -846,7 +846,7 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -882,7 +882,7 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status)
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
