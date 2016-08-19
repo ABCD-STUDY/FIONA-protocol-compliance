@@ -82,8 +82,10 @@ else
         human_compliance(requiredStruct, compliance_key, compliance_output, output, datastore);
     elseif any(strfind(parsedExam.Manufacturer, 'SIEMENS')) 
         human_compliance_SIEMENS(requiredStruct, compliance_key_siemens, compliance_output, output, datastore);
+    elseif any(strfind(parsedExam.Manufacturer, 'Philips'))
+        human_compliance_SIEMENS(requiredStruct, compliance_key_siemens, compliance_output, output, datastore); %Initially Philips compliance should be similar to SIEMENS
     else
-        human_compliance(requiredStruct, compliance_key, compliance_output, output, datastore); %For now if the manufacturer cannot be identified, the script will run as if it was GE data
+        return
     end
 end
 

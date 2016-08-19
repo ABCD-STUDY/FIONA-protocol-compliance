@@ -161,7 +161,7 @@ if str2num(compliance_output.ABCD_MB_fMRI_QA.status)
     end
     
     sNo = num2str(compliance_output.ABCD_MB_fMRI_QA.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -200,7 +200,7 @@ if str2num(compliance_output.ABCD_Diffusion_QA.status)
     end
     
     sNo = num2str(compliance_output.ABCD_Diffusion_QA.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 

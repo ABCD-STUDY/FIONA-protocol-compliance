@@ -141,7 +141,7 @@ if (str2double(compliance_output.rsfMRI_Block_1.status)...,
         && str2double(compliance_output.T2.status))
 
     compliance_output.status = '1'; 
-    compliance_output.message = 'A completed compliant protocol was obtained';
+    compliance_output.message = 'A completed compliant protocol was obtained. One session based acquisition.';
     compliance_output.shortmessage = 'C';
     
 elseif (str2double(compliance_output.rsfMRI_Block_1.status)...,
@@ -151,7 +151,7 @@ elseif (str2double(compliance_output.rsfMRI_Block_1.status)...,
         && str2double(compliance_output.T2.status))
     
     compliance_output.status = '1'; 
-    compliance_output.message = 'A completed compliant session was acquired. Session 1 Type A (Two session based acquisition)'; 
+    compliance_output.message = 'A completed compliant session was acquired. Two session based acquisition. Subsession Type A part 1';  
     compliance_output.shortmessage = 'A1';
     
 elseif (str2double(compliance_output.rsfMRI_Block_1.status)...,
@@ -160,7 +160,7 @@ elseif (str2double(compliance_output.rsfMRI_Block_1.status)...,
         && str2double(compliance_output.T2.status))
     
     compliance_output.status = '1'; 
-    compliance_output.message = 'A completed compliant session was acquired. Session 2 Type B (Two session based acquisition)'; 
+    compliance_output.message = 'A completed compliant session was acquired. Two session based acquisition. Subsession Type B part 2';
     compliance_output.shortmessage = 'B2';
     
 elseif  (str2double(compliance_output.nBack_fMRI_Block.status)...,
@@ -169,7 +169,7 @@ elseif  (str2double(compliance_output.nBack_fMRI_Block.status)...,
         && str2double(compliance_output.T1.status))
     
     compliance_output.status = '1'; 
-    compliance_output.message = 'A completed compliant session was acquired. Session 1 Type B (Two session based acquisition)';   
+    compliance_output.message = 'A completed compliant session was acquired. Two session based acquisition. Subsession Type B part 1';    
     compliance_output.shortmessage = 'B1';
     
 elseif  (str2double(compliance_output.nBack_fMRI_Block.status)...,
@@ -177,7 +177,7 @@ elseif  (str2double(compliance_output.nBack_fMRI_Block.status)...,
         && str2double(compliance_output.SST_fMRI_Block.status))
     
     compliance_output.status = '1'; 
-    compliance_output.message = 'A completed compliant session was acquired. Session 2 Type A (Two session based acquisition)';  
+    compliance_output.message = 'A completed compliant session was acquired. Two session based acquisition. Subsession Type A part 2';   
     compliance_output.shortmessage = 'A2';
      
 end
@@ -250,7 +250,7 @@ if str2num(compliance_output.DTI_Block.DTI_FM.status)
     end
 
     sNo = num2str(compliance_output.DTI_Block.DTI_FM.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -285,7 +285,7 @@ if str2num(compliance_output.DTI_Block.DTI.status)
     end
 
     sNo = num2str(compliance_output.DTI_Block.DTI.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -341,7 +341,7 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.MID_fMRI_Block.MID_fMRI_run1.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -375,7 +375,7 @@ if str2num(compliance_output.MID_fMRI_Block.MID_fMRI_run2.status)
         compliance_output.MID_fMRI_Block.MID_fMRI_run2.file{1,1}.path = ffname;   
     end
     sNo = num2str(compliance_output.MID_fMRI_Block.MID_fMRI_run2.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -430,7 +430,7 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.SST_fMRI_Block.SST_fMRI_run1.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -465,7 +465,7 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_run2.status)
     end
 
     sNo = num2str(compliance_output.SST_fMRI_Block.SST_fMRI_run2.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -520,7 +520,7 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.status)
     end
     
     sNo = num2str(compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -556,7 +556,7 @@ if str2num(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.status)
     end
 
     sNo = num2str(compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -611,7 +611,7 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_1.rs_fMRI_run1.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -647,7 +647,7 @@ if str2num(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status)
     end
     
     sNo = num2str(compliance_output.rsfMRI_Block_1.rs_fMRI_run2.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -702,7 +702,7 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status)
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_2.rs_fMRI_run1.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
@@ -738,7 +738,7 @@ if str2num(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status)
     end
 
     sNo = num2str(compliance_output.rsfMRI_Block_2.rs_fMRI_run2.SeriesNumber);
-    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '*.t*');
+    fname = strcat(suidprefixpfile, stUID, prefixpfile, pID, '*se', sNo, '_', '*.t*');
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
 
