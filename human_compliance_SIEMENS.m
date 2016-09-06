@@ -465,7 +465,7 @@ end
 %%%
 
 if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_FM_PA.status)
-    sUI = compliance_output.MID_fMRI_Block.SST_fMRI_FM_PA.SeriesInstanceUID;
+    sUI = compliance_output.SST_fMRI_Block.SST_fMRI_FM_PA.SeriesInstanceUID;
     fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
@@ -484,7 +484,7 @@ if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_FM_PA.status)
 end
 
 if str2num(compliance_output.SST_fMRI_Block.SST_fMRI_FM_AP.status)
-    sUI = compliance_output.MID_fMRI_Block.SST_fMRI_FM_AP.SeriesInstanceUID;
+    sUI = compliance_output.SST_fMRI_Block.SST_fMRI_FM_AP.SeriesInstanceUID;
     fname = sprintf('%s_%s.t*', stUID, sUI);
     ffname = fullfile (datastore, fname);
     fresult = dir(ffname);
