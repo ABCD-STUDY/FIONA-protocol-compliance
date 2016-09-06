@@ -2,7 +2,7 @@ function [compliance_output] = additionalSeriesParsing(compliance_output, requir
 
 stUID = compliance_output.StudyInstanceUID;
 suidprefixpfile = 'SUID_';
-prefixpfile = '_subjid';
+prefixpfile = '_subjid_';
 pID = compliance_output.PatientID;
 
 kspace_index = 0;
