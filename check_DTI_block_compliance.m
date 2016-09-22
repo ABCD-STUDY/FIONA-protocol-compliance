@@ -3,7 +3,7 @@ function [compliance_output, requiredStruct] = check_DTI_block_compliance(compli
 %==========Any code to check DTI_block compliance ==========%
 % Use rules in parsedExam to check compliance
 
-
+index(index<2)=[];
 for i=1:length(index)
   
     testingSeries_DTI = requiredStruct(index(i));

@@ -21,6 +21,7 @@ compliance_key_siemens=loadjson('./compliance_key_SIEMENS.json');
 
 compliance_output=loadjson('./compliance_output.json');
 
+unwanted_keys = loadjson('./skip_key.json');
 
 %===================================%
 
@@ -32,6 +33,7 @@ filelist = {inputFolderList(idx).name};
 
 requiredStruct = ([]);
 errorlist = [];
+index = 1;
 for i=1:length(filelist)
 
     fname = fullfile(input,filelist{i});
@@ -45,13 +47,20 @@ for i=1:length(filelist)
         else
            compliance_output.error_messages{1} = sprintf('corrupted json file: %s', fname);
         end
-        errorlist = [errorlist, i];
+        errorlist = [errorlist, index];
         continue;
     end
-    requiredStruct(i).fullclassifyType = parsedExam.ClassifyType;
-    requiredStruct(i).manufacturer = parsedExam.Manufacturer;
-    requiredStruct(i).SeriesInstanceUID = parsedExam.SeriesInstanceUID;
-    requiredStruct(i).SeriesNumber = str2double(parsedExam.SeriesNumber);
+    
+    fullclassifyType = parsedExam.ClassifyType;
+    skiptypes = unwanted_keys.ClassifyTypes;
+    if(sTypeFinder(fullclassifyType, skiptypes))
+        continue;
+    end
+    
+    requiredStruct(index).fullclassifyType = parsedExam.ClassifyType;
+    requiredStruct(index).manufacturer = parsedExam.Manufacturer;
+    requiredStruct(index).SeriesInstanceUID = parsedExam.SeriesInstanceUID;
+    requiredStruct(index).SeriesNumber = str2double(parsedExam.SeriesNumber);
     
     %%%Scan Info
     compliance_output.StudyDate = parsedExam.StudyDate;
@@ -61,6 +70,7 @@ for i=1:length(filelist)
     compliance_output.ManufacturerModelName = parsedExam.Manufacturer;
     compliance_output.PatientID = parsedExam.PatientID;
     compliance_output.PatientName = parsedExam.PatientName;
+    index = index + 1;
 end
 
 requiredStruct(errorlist)=[];

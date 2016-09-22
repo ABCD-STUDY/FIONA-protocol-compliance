@@ -4,9 +4,9 @@ function [compliance_output, requiredStruct] = check_rsfMRI_block_compliance_SIE
 % Use rules in parsedExam to check compliance
 
 %%%% Check for the 2 runs rsfMRI experiment with FM
-
+index(index<3)=[];
 for i=1:2:length(index)
-
+    
     testingSeries_rsfMRI_1 = requiredStruct(index(i));
     
     compliance_output.rsfMRI_Block_1.rs_fMRI_run1.SeriesInstanceUID = testingSeries_rsfMRI_1.SeriesInstanceUID;
@@ -73,6 +73,7 @@ end
 %%%% Check for the up to two runs rsfMRI experiment with FM
 
 if (~isempty(index))
+    index(index<3)=[];
     
     for i=1:2:length(index)
         

@@ -5,7 +5,7 @@ function [compliance_output, requiredStruct] = check_SST_task_compliance_SIEMENS
 % Use rules in parsedExam to check compliance
 
 %%%% Check for the 2 runs SST fMRI experiment with FM
-
+index(index<3)=[];
 for i=1:2:length(index)    
 
     testingSeries_SST = requiredStruct(index(i));

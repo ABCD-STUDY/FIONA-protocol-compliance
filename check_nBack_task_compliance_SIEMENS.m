@@ -6,9 +6,9 @@ function [compliance_output, requiredStruct] = check_nBack_task_compliance_SIEME
 % Use rules in parsedExam to check compliance
 
 %%%% Check for the 2 runs nBack fMRI experiment with FM
-
+index(index<3)=[];
 for i=1:2:length(index)    
-
+    
     testingSeries_nBack = requiredStruct(index(i));
     
   

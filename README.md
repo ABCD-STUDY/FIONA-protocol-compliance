@@ -3,7 +3,11 @@ Matlab script for ABCD study protocol compliance
 
 ## Version history
 
-### 0.0.12 (latest stable)
+### 0.0.13 (latest stable)
+
+- Ignores PMU series to allow compliance of consecutive fMRI runs
+
+### 0.0.12
 
 - Allows Philips scans
 - Updated compliance message for clarity

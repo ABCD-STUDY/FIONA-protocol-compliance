@@ -1,5 +1,5 @@
 function [compliance_output, requiredStruct] = check_MID_task_compliance(compliance_output, requiredStruct, compliance_key, index)
-
+index(index<2)=[];
 for i=1:2:length(index)    
 
     testingSeries_MID = requiredStruct(index(i));
