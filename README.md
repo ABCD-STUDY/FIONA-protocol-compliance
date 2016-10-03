@@ -3,7 +3,11 @@ Matlab script for ABCD study protocol compliance
 
 ## Version history
 
-### 0.0.13 (latest stable)
+### 0.0.14 (latest stable)
+
+- Fixes bug that prevented phantom pfiles to appear in the web interface
+
+### 0.0.13
 
 - Ignores PMU series to allow compliance of consecutive fMRI runs
 
@@ -12,7 +16,7 @@ Matlab script for ABCD study protocol compliance
 - Allows Philips scans
 - Updated compliance message for clarity
 
-### 0.0.11 (latest stable)
+### 0.0.11
 
 - Searches for dicom and k-space files for each of the additional series exams
 

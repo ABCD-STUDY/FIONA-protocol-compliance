@@ -103,7 +103,7 @@ end
 
 stUID = compliance_output.StudyInstanceUID;
 suidprefixpfile = 'SUID_';
-prefixpfile = '_subjid';
+prefixpfile = '_subjid_';
 pID = compliance_output.PatientID;
 
 if str2num(compliance_output.ABCD_Coil_QA.status)
