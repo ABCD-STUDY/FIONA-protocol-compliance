@@ -1,9 +1,11 @@
-function [compliance_output] = additionalSeriesParsing(compliance_output, requiredStruct, datastore)
+function [compliance_output] = additionalSeriesParsing(compliance_output, requiredStruct, skipedStruct, datastore)
 
 stUID = compliance_output.StudyInstanceUID;
 suidprefixpfile = 'SUID_';
 prefixpfile = '_subjid_';
 pID = compliance_output.PatientID;
+
+requiredStruct = [requiredStruct skipedStruct];
 
 kspace_index = 0;
 for i=1:length(requiredStruct)

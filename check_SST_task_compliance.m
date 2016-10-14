@@ -8,7 +8,7 @@ for i=1:2:length(index)
     compliance_output.SST_fMRI_Block.SST_fMRI_run1.SeriesInstanceUID = testingSeries_SST.SeriesInstanceUID;
     compliance_output.SST_fMRI_Block.SST_fMRI_run1.SeriesNumber = testingSeries_SST.SeriesNumber;
     compliance_output.SST_fMRI_Block.SST_fMRI_run1.status = '1';
-    compliance_output.SST_fMRI_Block.SST_fMRI_run1.message = 'Compliant SST fMRI task was found';  
+    compliance_output.SST_fMRI_Block.SST_fMRI_run1.message = 'Compliant SST fMRI task was found'; 
     
     %Check that field map is preceding the fMRI task
     testingSeries_FM = requiredStruct(index(i)-1);
@@ -28,7 +28,7 @@ for i=1:2:length(index)
             compliance_output.SST_fMRI_Block.SST_fMRI_run2.SeriesInstanceUID = testingSeries_SST_2.SeriesInstanceUID;
             compliance_output.SST_fMRI_Block.SST_fMRI_run2.SeriesNumber = testingSeries_SST_2.SeriesNumber;
             compliance_output.SST_fMRI_Block.SST_fMRI_run2.status = '1';
-            compliance_output.SST_fMRI_Block.SST_fMRI_run2.message = 'Compliant SST fMRI task was found';
+            compliance_output.SST_fMRI_Block.SST_fMRI_run2.message = 'Compliant SST fMRI task was found'; 
         end
     end
      

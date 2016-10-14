@@ -1,4 +1,4 @@
-function human_compliance_SIEMENS(requiredStruct, compliance_key, c_output, outdir, datastore)
+function human_compliance_SIEMENS(requiredStruct, compliance_key, c_output, outdir, datastore, skipedStruct)
 
 %============Load SIEMENS compliance output json=======%
 
@@ -140,7 +140,7 @@ end
 
 %======== Tag leftover series ====================%
         
-compliance_output = additionalSeriesParsing(compliance_output, requiredStruct, datastore);
+compliance_output = additionalSeriesParsing(compliance_output, requiredStruct, skipedStruct, datastore);
 
 
 %==== Check possible compliances (Full, subsession) ===%

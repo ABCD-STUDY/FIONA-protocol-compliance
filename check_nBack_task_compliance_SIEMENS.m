@@ -16,6 +16,10 @@ for i=1:2:length(index)
     compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.SeriesNumber = testingSeries_nBack.SeriesNumber;
     compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.status = '1';
     compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.message = 'Compliant nBack fMRI task was found';  
+    if (cErrorFinder(testingSeries_nBack.fullclassifyType))
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.message = [compliance_output.nBack_fMRI_Block.nBack_fMRI_run1.message '. Warning: Coil Error Detected'];
+    end  
+    
     
     %Check that field map is preceding the fMRI task
     
@@ -32,9 +36,16 @@ for i=1:2:length(index)
 
         compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.status = '1';
         compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.message = 'fMRI field map acquisition with PA phase encoding direction is compliant with ABCD protocol';   
+        if (cErrorFinder(testingSeries_FM_fwd.fullclassifyType))
+            compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.message = [compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_PA.message '. Warning: Coil Error Detected'];
+        end         
         
         compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.status = '1';
-        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.message = 'fMRI field map acquisition with AP phase encoding direction is compliant with ABCD protocol';   
+        compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.message = 'fMRI field map acquisition with AP phase encoding direction is compliant with ABCD protocol';
+        if (cErrorFinder(testingSeries_FM_rev.fullclassifyType))
+            compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.message = [compliance_output.nBack_fMRI_Block.nBack_fMRI_FM_AP.message '. Warning: Coil Error Detected'];
+        end  
+        
     end
     
      
@@ -45,6 +56,9 @@ for i=1:2:length(index)
             compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.SeriesNumber = testingSeries_nBack_2.SeriesNumber;
             compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.status = '1';
             compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.message = 'Compliant nBack fMRI task was found';
+            if (cErrorFinder(testingSeries_nBack_2.fullclassifyType))
+                compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.message = [compliance_output.nBack_fMRI_Block.nBack_fMRI_run2.message '. Warning: Coil Error Detected'];
+            end 
         end
     end
                    

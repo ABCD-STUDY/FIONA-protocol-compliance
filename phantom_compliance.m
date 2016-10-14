@@ -1,4 +1,4 @@
-function phantom_compliance(requiredStruct, compliance_key, c_output, outdir, datastore) 
+function phantom_compliance(requiredStruct, compliance_key, c_output, outdir, datastore, skipedStruct) 
 
 %============Load phantom compliance output json=======%
 
@@ -86,7 +86,7 @@ end
 
 %======== Tag leftover series ====================%
         
-compliance_output = additionalSeriesParsing(compliance_output, requiredStruct, datastore);
+compliance_output = additionalSeriesParsing(compliance_output, requiredStruct, skipedStruct, datastore);
 
 if (str2double(compliance_output.ABCD_Coil_QA.status)...,
         && str2double(compliance_output.ABCD_fBIRN_QA.status)...,
@@ -95,7 +95,7 @@ if (str2double(compliance_output.ABCD_Coil_QA.status)...,
 
     compliance_output.status = '1'; 
     compliance_output.message = 'A completed compliant phantom QA protocol was obtained';
-
+    compliance_output.shortmessage = 'C';
 end
 
 

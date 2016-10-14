@@ -19,7 +19,10 @@ for i=1:length(index)
         compliance_output.ABCD_MB_fMRI_QA.SeriesInstanceUID = testingSeries.SeriesInstanceUID;
         compliance_output.ABCD_MB_fMRI_QA.SeriesNumber = testingSeries.SeriesNumber;
         compliance_output.ABCD_MB_fMRI_QA.status = '1';
-        compliance_output.ABCD_MB_fMRI_QA.message = 'Compliant Coil-QA series was found';       
+        compliance_output.ABCD_MB_fMRI_QA.message = 'Compliant Coil-QA series was found';
+        if (cErrorFinder(testingSeries.fullclassifyType))
+            compliance_output.ABCD_MB_fMRI_QA.message = [compliance_output.ABCD_MB_fMRI_QA.message '. Warning: Coil Error Detected'];
+        end
         break;  
     end
     

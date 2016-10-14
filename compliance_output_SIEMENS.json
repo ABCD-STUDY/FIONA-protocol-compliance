@@ -351,10 +351,7 @@
         "StudyInstanceUID": "",
         "Manufacturer": "",
         "ManufacturerModelName": "",
-        "AdditionalSeries": [
-      {       
-       }         
-    ],
+        "AdditionalSeries": [],
         "error_messages" : [],
-        "version": "0.0.13"
+        "version": "0.0.15"
 }

@@ -12,7 +12,10 @@ for i=1:2:length(index)
     compliance_output.rsfMRI_Block_1.rs_fMRI_run1.SeriesInstanceUID = testingSeries_rsfMRI_1.SeriesInstanceUID;
     compliance_output.rsfMRI_Block_1.rs_fMRI_run1.SeriesNumber = testingSeries_rsfMRI_1.SeriesNumber;
     compliance_output.rsfMRI_Block_1.rs_fMRI_run1.status = '1';
-    compliance_output.rsfMRI_Block_1.rs_fMRI_run1.message = 'Resting state fMRI run is compliant with ABCD protocol';   
+    compliance_output.rsfMRI_Block_1.rs_fMRI_run1.message = 'Resting state fMRI run is compliant with ABCD protocol';
+    if (cErrorFinder(testingSeries_rsfMRI_1.fullclassifyType))
+        compliance_output.rsfMRI_Block_1.rs_fMRI_run1.message = [compliance_output.rsfMRI_Block_1.rs_fMRI_run1.message '. Warning: Coil Error Detected'];
+    end       
     
     %First check that the sequence of events is compliant
     
@@ -29,9 +32,15 @@ for i=1:2:length(index)
 
         compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.status = '1';
         compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.message = 'fMRI field map acquisition with PA phase encoding direction is compliant with ABCD protocol';   
+        if (cErrorFinder( testingSeries_FM_fwd.fullclassifyType))
+            compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.message = [compliance_output.rsfMRI_Block_1.rs_fMRI_FM_PA.message '. Warning: Coil Error Detected'];
+        end   
         
         compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.status = '1';
-        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.message = 'fMRI field map acquisition with AP phase encoding direction is compliant with ABCD protocol';   
+        compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.message = 'fMRI field map acquisition with AP phase encoding direction is compliant with ABCD protocol';
+        if (cErrorFinder( testingSeries_FM_rev.fullclassifyType))
+            compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.message = [compliance_output.rsfMRI_Block_1.rs_fMRI_FM_AP.message '. Warning: Coil Error Detected'];
+        end  
     end
     
         
@@ -43,7 +52,9 @@ for i=1:2:length(index)
             compliance_output.rsfMRI_Block_1.rs_fMRI_run2.SeriesNumber = testingSeries_rsfMRI_2.SeriesNumber;
             compliance_output.rsfMRI_Block_1.rs_fMRI_run2.status = '1';
             compliance_output.rsfMRI_Block_1.rs_fMRI_run2.message = 'Resting state fMRI run is compliant with ABCD protocol';
-
+            if (cErrorFinder(testingSeries_rsfMRI_2.fullclassifyType))
+                compliance_output.rsfMRI_Block_1.rs_fMRI_run2.message = [compliance_output.rsfMRI_Block_1.rs_fMRI_run2.message '. Warning: Coil Error Detected'];
+            end 
         end
     end
     
@@ -83,6 +94,10 @@ if (~isempty(index))
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1.SeriesNumber = testingSeries_rsfMRI_1.SeriesNumber;
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1.status = '1';
         compliance_output.rsfMRI_Block_2.rs_fMRI_run1.message = 'Resting state fMRI run is compliant with ABCD protocol';   
+        if (cErrorFinder(testingSeries_rsfMRI_1.fullclassifyType))
+            compliance_output.rsfMRI_Block_2.rs_fMRI_run1.message = [compliance_output.rsfMRI_Block_2.rs_fMRI_run1.message '. Warning: Coil Error Detected'];
+        end  
+        
         
         testingSeries_FM_fwd = requiredStruct(index(i)-2);
         testingSeries_FM_rev = requiredStruct(index(i)-1);
@@ -97,9 +112,16 @@ if (~isempty(index))
 
             compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.status = '1';
             compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.message = 'fMRI field map acquisition with PA phase encoding direction is compliant with ABCD protocol';   
-        
+            if (cErrorFinder(testingSeries_FM_fwd.fullclassifyType))
+                compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.message = [compliance_output.rsfMRI_Block_2.rs_fMRI_FM_PA.message '. Warning: Coil Error Detected'];
+            end  
+                        
             compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.status = '1';
             compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.message = 'fMRI field map acquisition with AP phase encoding direction is compliant with ABCD protocol';   
+            if (cErrorFinder(testingSeries_FM_rev.fullclassifyType))
+                compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.message = [compliance_output.rsfMRI_Block_2.rs_fMRI_FM_AP.message '. Warning: Coil Error Detected'];
+            end  
+            
         end
         
              
@@ -111,7 +133,9 @@ if (~isempty(index))
                 compliance_output.rsfMRI_Block_2.rs_fMRI_run2.SeriesNumber = testingSeries_rsfMRI_2.SeriesNumber;
                 compliance_output.rsfMRI_Block_2.rs_fMRI_run2.status = '1';
                 compliance_output.rsfMRI_Block_2.rs_fMRI_run2.message = 'Resting state fMRI run is compliant with ABCD protocol';
-
+                if (cErrorFinder(testingSeries_rsfMRI_2.fullclassifyType))
+                    compliance_output.rsfMRI_Block_2.rs_fMRI_run2.message = [compliance_output.rsfMRI_Block_2.rs_fMRI_run2.message '. Warning: Coil Error Detected'];
+                end  
             end
         end
                      

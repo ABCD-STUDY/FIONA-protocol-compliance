@@ -32,8 +32,10 @@ jsonDatenum = [inputFolderList(:).datenum];
 filelist = {inputFolderList(idx).name}; 
 
 requiredStruct = ([]);
+skipedStruct =([]);
 errorlist = [];
 index = 1;
+s_index = 1;
 for i=1:length(filelist)
 
     fname = fullfile(input,filelist{i});
@@ -54,6 +56,11 @@ for i=1:length(filelist)
     fullclassifyType = parsedExam.ClassifyType;
     skiptypes = unwanted_keys.ClassifyTypes;
     if(sTypeFinder(fullclassifyType, skiptypes))
+        skipedStruct(s_index).fullclassifyType = parsedExam.ClassifyType;
+        skipedStruct(s_index).manufacturer = parsedExam.Manufacturer;
+        skipedStruct(s_index).SeriesInstanceUID = parsedExam.SeriesInstanceUID;
+        skipedStruct(s_index).SeriesNumber = str2double(parsedExam.SeriesNumber);
+        s_index = s_index + 1;
         continue;
     end
     
@@ -85,15 +92,15 @@ requiredStruct = requiredStruct(idx);
 [phantom_result] = check_phantomQA(requiredStruct, phantom_compliance_key);
 
 if phantom_result
-    phantom_compliance(requiredStruct, phantom_compliance_key, compliance_output, output, datastore) 
+    phantom_compliance(requiredStruct, phantom_compliance_key, compliance_output, output, datastore, skipedStruct) 
 
 else
     if any(strfind(parsedExam.Manufacturer, 'GE'))
-        human_compliance(requiredStruct, compliance_key, compliance_output, output, datastore);
+        human_compliance(requiredStruct, compliance_key, compliance_output, output, datastore, skipedStruct);
     elseif any(strfind(parsedExam.Manufacturer, 'SIEMENS')) 
-        human_compliance_SIEMENS(requiredStruct, compliance_key_siemens, compliance_output, output, datastore);
+        human_compliance_SIEMENS(requiredStruct, compliance_key_siemens, compliance_output, output, datastore, skipedStruct);
     elseif any(strfind(parsedExam.Manufacturer, 'Philips'))
-        human_compliance_SIEMENS(requiredStruct, compliance_key_siemens, compliance_output, output, datastore); %Initially Philips compliance should be similar to SIEMENS
+        human_compliance_SIEMENS(requiredStruct, compliance_key_siemens, compliance_output, output, datastore, skipedStruct); %Initially Philips compliance should be similar to SIEMENS
     else
         return
     end

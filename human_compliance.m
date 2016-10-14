@@ -1,4 +1,4 @@
-function human_compliance(requiredStruct, compliance_key, compliance_output, outdir, datastore)
+function human_compliance(requiredStruct, compliance_key, compliance_output, outdir, datastore, skipedStruct)
 
 
 %======== Search for ABCD-T1 Series ================%
@@ -125,7 +125,7 @@ end
 
 %======== Tag leftover series ====================%
         
-compliance_output = additionalSeriesParsing(compliance_output, requiredStruct, datastore);
+compliance_output = additionalSeriesParsing(compliance_output, requiredStruct, skipedStruct, datastore);
 
 
 

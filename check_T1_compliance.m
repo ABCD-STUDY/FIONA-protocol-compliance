@@ -19,7 +19,10 @@ for i=1:length(index)
         compliance_output.T1.SeriesInstanceUID = testingSeries.SeriesInstanceUID;
         compliance_output.T1.SeriesNumber = testingSeries.SeriesNumber;
         compliance_output.T1.status = '1';
-        compliance_output.T1.message = 'Compliant ABCD-T1 series was found';       
+        compliance_output.T1.message = 'Compliant ABCD-T1 series was found';
+        if (cErrorFinder(testingSeries.fullclassifyType))
+            compliance_output.T1.message = [compliance_output.T1.message '. Warning: Coil Error Detected'];
+        end
         break;  
     end
     

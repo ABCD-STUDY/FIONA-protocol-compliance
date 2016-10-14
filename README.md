@@ -3,7 +3,14 @@ Matlab script for ABCD study protocol compliance
 
 ## Version history
 
-### 0.0.14 (latest stable)
+### 0.0.15 (latest stable)
+
+- Fixes issue with null Additional series in json file
+- Warns about coil error in series message (for SIEMENS)
+- Assign category C to complete phantom QA acquisitions
+
+
+### 0.0.14
 
 - Fixes bug that prevented phantom pfiles to appear in the web interface
 

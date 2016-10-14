@@ -51,7 +51,7 @@
         },
         "status": "0",
         "message": "Phantom QA protocol is not completed",
-        "shortmessage": "QA",
+        "shortmessage": "",
         "PatientID":"",
         "PatientName":"",
         "StudyDate": "",
@@ -59,10 +59,7 @@
         "StudyInstanceUID": "",
         "Manufacturer": "",
         "ManufacturerModelName": "",
-        "AdditionalSeries": [
-      {      
-       }         
-    ],
+        "AdditionalSeries": [],
         "error_messages" : [],
-        "version": "0.0.13"
+        "version": "0.0.15"
 }
