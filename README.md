@@ -3,7 +3,11 @@ Matlab script for ABCD study protocol compliance
 
 ## Version history
 
-### 0.0.15 (latest stable)
+### 0.0.16 (latest stable)
+
+- Fixes Siemens and Philips pfile name pattern (_subjid_)
+
+### 0.0.15
 
 - Fixes issue with null Additional series in json file
 - Warns about coil error in series message (for SIEMENS)

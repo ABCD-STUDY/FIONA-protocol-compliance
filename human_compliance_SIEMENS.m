@@ -201,7 +201,7 @@ end
 
 stUID = compliance_output.StudyInstanceUID;
 suidprefixpfile = 'SUID_';
-prefixpfile = '_subjid';
+prefixpfile = '_subjid_';
 pID = compliance_output.PatientID;
 %sdate = compliance_output.StudyDate;
 %fsdate = strcat(sdate(5:6), '-', sdate((end-1):end), '-', sdate(1:4));
